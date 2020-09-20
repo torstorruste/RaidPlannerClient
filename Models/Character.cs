@@ -6,8 +6,8 @@ namespace RaidPlannerClient.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public CharacterClass CharacterClass { get; set; }
-        public List<Role> Roles { get; set; }
+        public string CharacterClass { get; set; }
+        public List<string> Roles { get; set; }
 
     }
 }
