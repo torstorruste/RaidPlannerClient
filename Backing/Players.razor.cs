@@ -22,8 +22,16 @@ namespace RaidPlannerClient.Pages
 
         public void AddPlayer()
         {
-            playerService.AddPlayer(new Player { Id = 3, Name = "Furo" });
+            Console.WriteLine("Add players");
+            players = new List<Player>();
         }
+
+        public async void RefreshPlayers() {
+            Console.WriteLine("Refresh players");
+            players = await GetPlayers();
+            StateHasChanged();
+        }
+
         protected override async Task OnInitializedAsync()
         {
             Console.WriteLine("Players::OnInitializedAsync");
