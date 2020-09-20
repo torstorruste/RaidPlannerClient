@@ -1,4 +1,4 @@
-namespace org.superhelt.Blazor
+namespace RaidPlannerClient.Model
 {
     public enum Role
     {

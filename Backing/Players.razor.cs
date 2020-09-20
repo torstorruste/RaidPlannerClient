@@ -1,25 +1,24 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Components;
+using RaidPlannerClient.Model;
+using RaidPlannerClient.Service;
 
-namespace org.superhelt.Blazor
+namespace RaidPlannerClient.Pages
 {
-    public partial class Players {
+    public partial class Players
+    {
 
-        List<Player> players  = new List<Player>{
-                new Player{Id=1, Name="Zikura", Characters=new List<Character>{
-                    new Character{Id=1, Name="Zikura", CharacterClass=CharacterClass.Druid, Roles=new List<Role>{Role.Tank, Role.Ranged}},
-                    new Character{Id=2, Name="Ziktator", CharacterClass=CharacterClass.Monk, Roles=new List<Role>{Role.Tank, Role.Ranged}}
-                }}, 
-                new Player{Id=2, Name="Richard", Characters= new List<Character>{
-                    new Character{Id=3, Name="Drahc", CharacterClass=CharacterClass.Druid, Roles=new List<Role>{Role.Tank, Role.Melee}}
-                }}
-            };
+        [Inject]
+        private IPlayerService playerService { get; set; }
 
-        public List<Player> GetPlayers() {
-            return players;
+        public List<Player> GetPlayers()
+        {
+            return playerService.GetPlayers();
         }
 
-        public void AddPlayer() {
-            players.Add(new Player{Id=3, Name="Furo"});
+        public void AddPlayer()
+        {
+            playerService.AddPlayer(new Player { Id = 3, Name = "Furo" });
         }
     }
 }

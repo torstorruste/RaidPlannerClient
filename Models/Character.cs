@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace org.superhelt.Blazor
+namespace RaidPlannerClient.Model
 {
     public class Character
     {
