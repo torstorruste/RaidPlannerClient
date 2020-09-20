@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using RaidPlannerClient.Model;
+using Newtonsoft.Json;
 
 namespace RaidPlannerClient.Service
 {
@@ -24,7 +25,12 @@ namespace RaidPlannerClient.Service
         public async Task<List<Player>> GetPlayers()
         {
             Console.WriteLine("PlayerService::GetPlayers");
-            return await httpClient.GetFromJsonAsync<List<Player>>("/players");
+
+            var result = await httpClient.GetAsync("/players");
+            result.EnsureSuccessStatusCode();
+
+            var json = await result.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<Player>>(json);
         }
     }
 }
