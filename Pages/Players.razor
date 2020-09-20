@@ -1,0 +1,26 @@
+@page "/players"
+@namespace org.superhelt.Blazor
+
+<h1>Players</h1>
+
+<table>
+    <tr>
+        <th>Player:</th>
+        <th>Character:</th>
+        <th>Class:</th>
+    </tr>
+    @foreach(var player in GetPlayers()) {
+    <tr>
+        <td>@player.Name</td>
+        <td></td>
+    </tr>
+    @foreach (var character in player.Characters)
+    {
+        <tr>
+            <td></td>
+            <td>@character.Name</td>
+            <td>@character.CharacterClass</td>
+        </tr>
+    }
+    }
+</table>
