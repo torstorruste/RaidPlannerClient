@@ -35,12 +35,3 @@ else {
 
 //<button class="btn btn-primary" @onclick="AddPlayer">Add Player</button>
 }
-
-@code {
-    private List<Player> players;
-
-    protected override async Task OnInitializedAsync()
-    {
-        players = await Http.GetFromJsonAsync<List<Player>>("/players");
-    }
-}
