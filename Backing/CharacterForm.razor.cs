@@ -13,6 +13,9 @@ namespace RaidPlannerClient.Components
         [Parameter]
         public Character Character { get; set; }
 
+        [Parameter]
+        public PlayerForm PlayerForm { get; set; }
+
         [Inject]
         public ICharacterService characterService { get; set; }
 
@@ -22,12 +25,13 @@ namespace RaidPlannerClient.Components
             if (Character.Id == null)
             {
                 Character = await characterService.AddCharacter(Player, Character);
+                PlayerForm.AddCharacter(Character);
             }
             else
             {
                 characterService.UpdateCharacter(Player, Character);
+                PlayerForm.UpdateCharacters();
             }
-            StateHasChanged();
         }
     }
 }

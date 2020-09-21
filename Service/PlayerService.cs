@@ -50,7 +50,13 @@ namespace RaidPlannerClient.Service
             result.EnsureSuccessStatusCode();
 
             var json = await result.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<List<Player>>(json);
+            var players = JsonConvert.DeserializeObject<List<Player>>(json);
+
+            foreach(var player in players) {
+                player.Characters.Sort((a,b)=>a.Name.CompareTo(b.Name));
+            }
+
+            return players;
         }
     }
 }

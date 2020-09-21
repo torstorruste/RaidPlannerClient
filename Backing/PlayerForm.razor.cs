@@ -26,6 +26,17 @@ namespace RaidPlannerClient.Components
             }
         }
 
+        public void AddCharacter(Character character) {
+            Player.Characters.Add(character);
+            UpdateCharacters();
+        }
+
+        public void UpdateCharacters() {
+            Player.Characters.Sort((a,b)=>a.Name.CompareTo(b.Name));
+            newCharacter = new Character();
+            StateHasChanged();
+        }
+
         public void ToggleCollapse() {
             Console.WriteLine("PlayerForm::ToggleCollapse");
             if(Collapse=="collapse") {
