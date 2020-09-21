@@ -1,3 +1,16 @@
 <div class="panel-body">
-    <p>@Character.Name - @Character.CharacterClass</p>
+    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@Character">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <InputText id="name" @bind-Value="Character.Name" />
+        <InputSelect @bind-Value="Character.CharacterClass">
+            <option value="">Select class:</option>
+            @foreach (var value in Enum.GetValues(typeof(CharacterClass)))
+            {
+                <option>@value</option>
+            }
+        </InputSelect>
+
+        <button type="submit">Submit</button>
+    </EditForm>
 </div>

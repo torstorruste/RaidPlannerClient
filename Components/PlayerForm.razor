@@ -18,9 +18,12 @@
         @if(Player != null) {
             @foreach (var character in Player.Characters)
             {
-                <CharacterForm Character="@character" />
+                <CharacterForm Player="@Player" Character="@character" />
             }
         }
+
+        <h4>New character</h4>
+        <CharacterForm Player="@Player" Character="@newCharacter" />
     </div>
 
     

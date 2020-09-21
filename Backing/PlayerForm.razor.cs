@@ -14,6 +14,7 @@ namespace RaidPlannerClient.Components
         private IPlayerService playerService { get; set; }
 
         private string Collapse = "collapse";
+        private Character newCharacter = new Character();
 
         public async void HandleValidSubmit()
         {
