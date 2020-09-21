@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using RaidPlannerClient.Model;
 using RaidPlannerClient.Pages;
 using RaidPlannerClient.Service;
@@ -16,6 +17,9 @@ namespace RaidPlannerClient.Components
 
         [Inject]
         private IPlayerService playerService { get; set; }
+
+        [Inject]
+        private IJSRuntime JSRuntime { get; set; }
 
         private string Collapse = "collapse";
         private Character newCharacter = new Character();
@@ -60,10 +64,14 @@ namespace RaidPlannerClient.Components
             }
         }
 
-        public void DeletePlayer()
+        public async void DeletePlayer()
         {
-            playerService.DeletePlayer(Player);
-            Players.DeletePlayer(Player);
+            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete {Player.Name}?");
+            if (confirmed)
+            {
+                playerService.DeletePlayer(Player);
+                Players.DeletePlayer(Player);
+            }
         }
 
         internal void DeleteCharacter(Character character)

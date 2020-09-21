@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using RaidPlannerClient.Model;
 using RaidPlannerClient.Service;
 
@@ -19,6 +20,9 @@ namespace RaidPlannerClient.Components
 
         [Inject]
         public ICharacterService characterService { get; set; }
+
+        [Inject]
+        private IJSRuntime JSRuntime { get; set; }
 
         public Boolean IsTank { get; set; }
         public Boolean IsHealer { get; set; }
@@ -46,8 +50,12 @@ namespace RaidPlannerClient.Components
         }
 
         public async void DeleteCharacter() {
+            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete {Character.Name}?");
+            if(confirmed)
+            {
             characterService.DeleteCharacter(Player, Character);
             PlayerForm.DeleteCharacter(Character);
+            }
         }
 
         public List<Role> GetRolesFromCheckboxes() {
