@@ -3,6 +3,8 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
         <InputText id="name" @bind-Value="Character.Name" />
+        
+        <img src="images/classes/@(Character.CharacterClass).png" width="20px" height="20px" />
         <InputSelect @bind-Value="Character.CharacterClass">
             <option value="">Select class:</option>
             @foreach (var value in Enum.GetValues(typeof(CharacterClass)))
@@ -10,6 +12,18 @@
                 <option>@value</option>
             }
         </InputSelect>
+
+        <img src="images/roles/tank.png"/>
+        <InputCheckbox @bind-Value="IsTank" />
+        
+        <img src="images/roles/healer.png"/>
+        <InputCheckbox @bind-Value="IsHealer" />
+
+        <img src="images/roles/melee.png"/>
+        <InputCheckbox @bind-Value="IsMelee" />
+
+        <img src="images/roles/ranged.png"/>
+        <InputCheckbox @bind-Value="IsRanged" />
 
         <button type="submit">Submit</button>
     </EditForm>
