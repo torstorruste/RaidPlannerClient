@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using RaidPlannerClient.Model;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace RaidPlannerClient.Service
 {
@@ -17,8 +18,21 @@ namespace RaidPlannerClient.Service
             this.httpClient = httpClient;
         }
 
-        public void AddPlayer(Player player)
+        public async Task<Player> AddPlayer(Player player)
         {
+            Console.WriteLine("PlayerService::AddPlayer");
+            
+            var playerJson = JsonConvert.SerializeObject(player);
+            Console.WriteLine("POSTing to players");
+            var result = await httpClient.PostAsync("players", new StringContent(playerJson, Encoding.UTF8, "application/json"));
+            var json = await result.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<Player>(json);
+        }
+
+        public void UpdatePlayer(Player player)
+        {
+            Console.WriteLine("PlayerService::UpdatePlayer");
             // TODO: Implement
         }
 

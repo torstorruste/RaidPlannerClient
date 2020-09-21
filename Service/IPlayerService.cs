@@ -4,7 +4,9 @@ using RaidPlannerClient.Model;
 
 namespace RaidPlannerClient.Service {
     public interface IPlayerService {
-        public Task<List<Player>> GetPlayers();
-        void AddPlayer(Player player);
+        Task<List<Player>> GetPlayers();
+        Task<Player> AddPlayer(Player player);
+
+        void UpdatePlayer(Player player);
     }
 }
