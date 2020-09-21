@@ -45,6 +45,11 @@ namespace RaidPlannerClient.Components
             }
         }
 
+        public async void DeleteCharacter() {
+            characterService.DeleteCharacter(Player, Character);
+            PlayerForm.DeleteCharacter(Character);
+        }
+
         public List<Role> GetRolesFromCheckboxes() {
             List<Role> roles = new List<Role>();
 

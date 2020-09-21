@@ -50,5 +50,11 @@ namespace RaidPlannerClient.Components
                 Collapse = "collapse";
             }
         }
+
+        internal void DeleteCharacter(Character character)
+        {
+            Player.Characters.Remove(character);
+            UpdateCharacters();
+        }
     }
 }

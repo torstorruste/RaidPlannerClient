@@ -6,5 +6,7 @@ namespace RaidPlannerClient.Service {
         Task<Character> AddCharacter(Player player, Character character);
 
         void UpdateCharacter(Player player, Character character);
+
+        void DeleteCharacter(Player player, Character character);
     }
 }

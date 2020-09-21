@@ -33,5 +33,12 @@ namespace RaidPlannerClient.Service {
             var result = await httpClient.PutAsync($"players/{player.Id}/characters/{character.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
         }
+        public async void DeleteCharacter(Player player, Character character) {
+            Console.WriteLine("CharacterService::DeleteCharacter");
+
+            Console.WriteLine($"DELETEing to players/{player.Id}/characters/{character.Id}");
+            var result = await httpClient.DeleteAsync($"players/{player.Id}/characters/{character.Id}");
+            result.EnsureSuccessStatusCode();
+        }
     }
 }
