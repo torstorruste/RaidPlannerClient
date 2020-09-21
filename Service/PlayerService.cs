@@ -25,21 +25,27 @@ namespace RaidPlannerClient.Service
             var playerJson = JsonConvert.SerializeObject(player);
             Console.WriteLine("POSTing to players");
             var result = await httpClient.PostAsync("players", new StringContent(playerJson, Encoding.UTF8, "application/json"));
-            var json = await result.Content.ReadAsStringAsync();
+            result.EnsureSuccessStatusCode();
 
+            var json = await result.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<Player>(json);
         }
 
-        public void UpdatePlayer(Player player)
+        public async void UpdatePlayer(Player player)
         {
             Console.WriteLine("PlayerService::UpdatePlayer");
-            // TODO: Implement
+            
+            var playerJson = JsonConvert.SerializeObject(player);
+            Console.WriteLine($"PUTing to players/{player.Id}");
+            var result = await httpClient.PutAsync($"players/{player.Id}", new StringContent(playerJson, Encoding.UTF8, "application/json"));
+            result.EnsureSuccessStatusCode();
         }
 
         public async Task<List<Player>> GetPlayers()
         {
             Console.WriteLine("PlayerService::GetPlayers");
 
+            Console.WriteLine("GETting players");
             var result = await httpClient.GetAsync("/players");
             result.EnsureSuccessStatusCode();
 
