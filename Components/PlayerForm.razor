@@ -1,10 +1,17 @@
 <div class="panel panel-default">
-    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@player">
+    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@Player">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
-        <InputText id="name" @bind-Value="player.Name" />
+        <InputText id="name" @bind-Value="Player.Name" />
 
         <button type="submit">Submit</button>
     </EditForm>
+
+    @if(Player != null) {
+        @foreach (var character in Player.Characters)
+        {
+            <CharacterForm Character="@character" />
+        }
+    }
 </div>
