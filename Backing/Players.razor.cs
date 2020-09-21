@@ -10,6 +10,7 @@ namespace RaidPlannerClient.Pages
     public partial class Players : ComponentBase
     {
         private List<Player> players;
+        private Player newPlayer = new Player{Name="New Player"};
 
         [Inject]
         private IPlayerService playerService { get; set; }

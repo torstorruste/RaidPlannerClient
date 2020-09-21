@@ -11,12 +11,15 @@
     <p><em>Loading...</em></p>
 }
 else {
+<PlayerForm />
+
 <table>
     <tr>
         <th>Player:</th>
         <th>Character:</th>
         <th>Class:</th>
     </tr>
+
     @foreach(var player in players) {
     <tr>
         <td>@player.Name</td>

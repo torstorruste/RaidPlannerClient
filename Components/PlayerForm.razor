@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@player">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputText id="name" @bind-Value="player.Name" />
+
+        <button type="submit">Submit</button>
+    </EditForm>
+</div>
