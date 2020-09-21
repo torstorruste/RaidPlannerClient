@@ -7,15 +7,21 @@
 
         <button type="submit">Submit</button>
         <button @onclick="ToggleCollapse">
-            @( this.Collapsed ? "+" : "-")
+            @( this.Collapse=="collapse" ? "+" : "-")
         </button>
     </EditForm>
 
-
-    @if(Player != null) {
-        @foreach (var character in Player.Characters)
-        {
-            <CharacterForm Character="@character" Collapse="@( this.Collapsed ? "collapse" : "" )" />
+    <div class="panel panel-default border @Collapse">
+        <div class="panel-heading alert-primary">
+            <h3 class="panel-title">Characters</h3>
+        </div>
+        @if(Player != null) {
+            @foreach (var character in Player.Characters)
+            {
+                <CharacterForm Character="@character" />
+            }
         }
-    }
+    </div>
+
+    
 </div>

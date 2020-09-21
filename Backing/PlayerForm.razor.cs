@@ -13,7 +13,7 @@ namespace RaidPlannerClient.Components
         [Inject]
         private IPlayerService playerService { get; set; }
 
-        private bool Collapsed = true;
+        private string Collapse = "collapse";
 
         public async void HandleValidSubmit()
         {
@@ -27,7 +27,11 @@ namespace RaidPlannerClient.Components
 
         public void ToggleCollapse() {
             Console.WriteLine("PlayerForm::ToggleCollapse");
-            Collapsed = !Collapsed;
+            if(Collapse=="collapse") {
+                Collapse = "";
+            } else {
+                Collapse = "collapse";
+            }
         }
     }
 }
