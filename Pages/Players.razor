@@ -13,29 +13,7 @@
 else {
 <PlayerForm Player="@newPlayer" />
 
-<table>
-    <tr>
-        <th>Player:</th>
-        <th>Character:</th>
-        <th>Class:</th>
-    </tr>
-
-    @foreach(var player in players) {
-    <tr>
-        <td>@player.Name</td>
-        <td></td>
-    </tr>
-    @if(player.Characters != null) {
-    @foreach (var character in player.Characters)
-    {
-        <tr>
-            <td></td>
-            <td>@character.Name</td>
-            <td>@character.CharacterClass</td>
-        </tr>
-    }
-    }
-    }
-</table>
-
+@foreach(var player in players) {
+    <PlayerForm Player="@player" />
+}
 }
