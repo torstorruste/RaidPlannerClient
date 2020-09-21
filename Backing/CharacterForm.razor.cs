@@ -32,10 +32,6 @@ namespace RaidPlannerClient.Components
         public async void HandleValidSubmit()
         {
             Console.WriteLine("CharacterForm::HandleValidSubmit");
-            Console.WriteLine($"Is Tank: {IsTank}");
-            Console.WriteLine($"Is Healer: {IsHealer}");
-            Console.WriteLine($"Is Melee: {IsMelee}");
-            Console.WriteLine($"Is Ranged: {IsRanged}");
             Character.Roles = GetRolesFromCheckboxes();
             if (Character.Id == null)
             {
@@ -78,10 +74,8 @@ namespace RaidPlannerClient.Components
 
         protected override void OnParametersSet() {
             if(Character != null && Character.Roles != null) {
-                Console.WriteLine("Character is set, updating checkboxes");
                 SetRolesFromCharacter(Character.Roles);
             } else {
-                Console.WriteLine("Character is not set");
                 IsTank = false;
                 IsHealer = false;
                 IsMelee = false;
