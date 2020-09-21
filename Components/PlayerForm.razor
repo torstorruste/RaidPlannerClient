@@ -8,10 +8,14 @@
         <button type="submit">Submit</button>
     </EditForm>
 
+    <button @onclick="ToggleCollapse">
+        @( this.Collapsed ? "+" : "-")
+    </button>
+
     @if(Player != null) {
         @foreach (var character in Player.Characters)
         {
-            <CharacterForm Character="@character" />
+            <CharacterForm Character="@character" Collapse="@( this.Collapsed ? "collapse" : "" )" />
         }
     }
 </div>

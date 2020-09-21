@@ -5,6 +5,7 @@ namespace RaidPlannerClient.Components
 {
     public partial class CharacterForm
     {
+        [Parameter]
         public string Collapse { get; set; } = "collapse";
 
         [Parameter]

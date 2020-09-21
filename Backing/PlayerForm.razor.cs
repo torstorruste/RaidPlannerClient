@@ -9,11 +9,17 @@ namespace RaidPlannerClient.Components
     {
         [Parameter]
         public Player Player { get; set; }
-        private Player player = new Player { Name = "New Player", Characters = new List<Character> { new Character { Name = "New Character" } } };
+
+        private bool Collapsed = true;
 
         public void HandleValidSubmit()
         {
             Console.WriteLine("PlayerForm::HandleValidSubmit");
+        }
+
+        public void ToggleCollapse() {
+            Console.WriteLine("PlayerForm::ToggleCollapse");
+            Collapsed = !Collapsed;
         }
     }
 }
