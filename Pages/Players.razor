@@ -1,19 +1,17 @@
 @page "/players"
 @namespace RaidPlannerClient.Pages
-@using RaidPlannerClient.Model
-@inject HttpClient Http
 
 <h1>Players</h1>
-<button class="btn btn-primary" @onclick="AddPlayer">Add Player</button>
-<button class="btn btn-primary" @onclick="RefreshPlayers">Refresh Player</button>
 @if (players == null)
 {
     <p><em>Loading...</em></p>
 }
 else {
-<PlayerForm Player="@newPlayer" />
+    <h3>New player</h3>
+    <PlayerForm Player="@newPlayer" Players="@this" />
 
+    <h3>Existing players</h3>
 @foreach(var player in players) {
-    <PlayerForm Player="@player" />
+    <PlayerForm Player="@player" Players="@this" />
 }
 }

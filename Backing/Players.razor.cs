@@ -10,7 +10,7 @@ namespace RaidPlannerClient.Pages
     public partial class Players : ComponentBase
     {
         private List<Player> players;
-        private Player newPlayer = new Player{Name="New Player", Characters=new List<Character>{new Character{Name="New Character"}}};
+        private Player newPlayer = new Player{Characters= new List<Character>()};
 
         [Inject]
         private IPlayerService playerService { get; set; }
@@ -21,22 +21,17 @@ namespace RaidPlannerClient.Pages
             return await playerService.GetPlayers();
         }
 
-        public void AddPlayer()
-        {
-            Console.WriteLine("Add players");
-            players = new List<Player>();
-        }
-
-        public async void RefreshPlayers() {
-            Console.WriteLine("Refresh players");
-            players = await GetPlayers();
-            StateHasChanged();
-        }
-
         protected override async Task OnInitializedAsync()
         {
             Console.WriteLine("Players::OnInitializedAsync");
             players = await GetPlayers();
+        }
+
+        public void AddPlayer(Player player) {
+            newPlayer = new Player{Characters= new List<Character>()};
+            players.Add(player);
+            players.Sort((a,b)=>a.Name.CompareTo(b.Name));
+            StateHasChanged();
         }
     }
 }

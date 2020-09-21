@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Components;
 using RaidPlannerClient.Model;
+using RaidPlannerClient.Pages;
 using RaidPlannerClient.Service;
 
 namespace RaidPlannerClient.Components
@@ -9,6 +10,9 @@ namespace RaidPlannerClient.Components
     {
         [Parameter]
         public Player Player { get; set; }
+
+        [Parameter]
+        public Players Players {get;set;}
         
         [Inject]
         private IPlayerService playerService { get; set; }
@@ -21,6 +25,7 @@ namespace RaidPlannerClient.Components
             Console.WriteLine("PlayerForm::HandleValidSubmit");
             if(Player.Id==null) {
                 Player = await playerService.AddPlayer(Player);
+                Players.AddPlayer(Player);
             } else {
                 playerService.UpdatePlayer(Player);
             }
