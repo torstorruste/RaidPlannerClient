@@ -21,7 +21,7 @@ namespace RaidPlannerClient.Service
         public async Task<Player> AddPlayer(Player player)
         {
             Console.WriteLine("PlayerService::AddPlayer");
-            
+
             var playerJson = JsonConvert.SerializeObject(player);
             Console.WriteLine("POSTing to players");
             var result = await httpClient.PostAsync("players", new StringContent(playerJson, Encoding.UTF8, "application/json"));
@@ -34,7 +34,7 @@ namespace RaidPlannerClient.Service
         public async void UpdatePlayer(Player player)
         {
             Console.WriteLine("PlayerService::UpdatePlayer");
-            
+
             var playerJson = JsonConvert.SerializeObject(player);
             Console.WriteLine($"PUTing to players/{player.Id}");
             var result = await httpClient.PutAsync($"players/{player.Id}", new StringContent(playerJson, Encoding.UTF8, "application/json"));
@@ -52,11 +52,21 @@ namespace RaidPlannerClient.Service
             var json = await result.Content.ReadAsStringAsync();
             var players = JsonConvert.DeserializeObject<List<Player>>(json);
 
-            foreach(var player in players) {
-                player.Characters.Sort((a,b)=>a.Name.CompareTo(b.Name));
+            foreach (var player in players)
+            {
+                player.Characters.Sort((a, b) => a.Name.CompareTo(b.Name));
             }
 
             return players;
+        }
+
+        public async void DeletePlayer(Player player)
+        {
+            Console.WriteLine("PlayerService::DeletePlayer");
+
+            Console.WriteLine($"DELETEing to players/{player.Id}");
+            var result = await httpClient.DeleteAsync($"players/{player.Id}");
+            result.EnsureSuccessStatusCode();
         }
     }
 }

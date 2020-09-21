@@ -8,5 +8,7 @@ namespace RaidPlannerClient.Service {
         Task<Player> AddPlayer(Player player);
 
         void UpdatePlayer(Player player);
+
+        void DeletePlayer(Player player);
     }
 }

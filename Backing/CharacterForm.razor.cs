@@ -74,6 +74,10 @@ namespace RaidPlannerClient.Components
                 SetRolesFromCharacter(Character.Roles);
             } else {
                 Console.WriteLine("Character is not set");
+                IsTank = false;
+                IsHealer = false;
+                IsMelee = false;
+                IsRanged = false;
             }
         }
     }

@@ -6,6 +6,7 @@
         <InputText id="name" @bind-Value="Player.Name" />
 
         <button type="submit">Submit</button>
+        <button @onclick="DeletePlayer">Delete</button>
         <button @onclick="ToggleCollapse">
             @( this.Collapse=="collapse" ? "+" : "-")
         </button>

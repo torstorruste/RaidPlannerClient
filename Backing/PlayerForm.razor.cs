@@ -12,8 +12,8 @@ namespace RaidPlannerClient.Components
         public Player Player { get; set; }
 
         [Parameter]
-        public Players Players {get;set;}
-        
+        public Players Players { get; set; }
+
         [Inject]
         private IPlayerService playerService { get; set; }
 
@@ -23,32 +23,47 @@ namespace RaidPlannerClient.Components
         public async void HandleValidSubmit()
         {
             Console.WriteLine("PlayerForm::HandleValidSubmit");
-            if(Player.Id==null) {
+            if (Player.Id == null)
+            {
                 Player = await playerService.AddPlayer(Player);
                 Players.AddPlayer(Player);
-            } else {
+            }
+            else
+            {
                 playerService.UpdatePlayer(Player);
             }
         }
 
-        public void AddCharacter(Character character) {
+        public void AddCharacter(Character character)
+        {
+            newCharacter = new Character();
             Player.Characters.Add(character);
             UpdateCharacters();
         }
 
-        public void UpdateCharacters() {
-            Player.Characters.Sort((a,b)=>a.Name.CompareTo(b.Name));
-            newCharacter = new Character();
+        public void UpdateCharacters()
+        {
+            Player.Characters.Sort((a, b) => a.Name.CompareTo(b.Name));
             StateHasChanged();
         }
 
-        public void ToggleCollapse() {
+        public void ToggleCollapse()
+        {
             Console.WriteLine("PlayerForm::ToggleCollapse");
-            if(Collapse=="collapse") {
+            if (Collapse == "collapse")
+            {
                 Collapse = "";
-            } else {
+            }
+            else
+            {
                 Collapse = "collapse";
             }
+        }
+
+        public void DeletePlayer()
+        {
+            playerService.DeletePlayer(Player);
+            Players.DeletePlayer(Player);
         }
 
         internal void DeleteCharacter(Character character)

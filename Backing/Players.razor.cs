@@ -30,6 +30,16 @@ namespace RaidPlannerClient.Pages
         public void AddPlayer(Player player) {
             newPlayer = new Player{Characters= new List<Character>()};
             players.Add(player);
+            UpdatePlayers();
+        }
+
+        internal void DeletePlayer(Player player)
+        {
+            players.Remove(player);
+            UpdatePlayers();
+        }
+
+        private void UpdatePlayers() {
             players.Sort((a,b)=>a.Name.CompareTo(b.Name));
             StateHasChanged();
         }
