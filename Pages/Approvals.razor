@@ -1,0 +1,8 @@
+@page "/approval"
+Approval
+
+@if(approvals != null) {
+    @foreach(var player in players) {
+        <PlayerApprovalForm Player="@player" Approvals="@this" />
+    }
+}

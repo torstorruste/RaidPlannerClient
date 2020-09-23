@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+    <h4>@Instance.Name</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Boss:</th>
+                @foreach (var character in Player.Characters)
+                {
+                    <th>@character.Name</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var boss in Instance.Bosses) 
+            {
+                <tr>
+                    <td>@boss.Name</td>
+                    @foreach(var character in Player.Characters)
+                    {
+                        @if(IsApproved(boss, character)) {
+                            <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" checked /></td>
+                        } else {
+                            <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" /></td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

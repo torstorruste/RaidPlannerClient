@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+    <h3>@Player.Name</h3>
+
+    @foreach (var instance in GetInstances())
+    {
+        <PlayerInstanceApprovalForm Player="@Player" Instance="@instance" Approvals="@Approvals" />
+    }
+</div>
