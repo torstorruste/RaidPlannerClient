@@ -28,5 +28,25 @@ namespace RaidPlannerClient.Service {
 
             return approvals;
         }
+
+        public async Task AddApproval(Player player, Character character, Instance instance, Boss boss)
+        {
+            Console.WriteLine("ApprovalService::AddApproval");
+
+            var path = $"players/{player.Id}/characters/{character.Id}/approvals/{instance.Id}/{boss.Id}";
+            Console.WriteLine($"POSTing to {path}");
+            var result = await httpClient.PostAsync(path, null);
+            result.EnsureSuccessStatusCode();
+        }
+
+        public async Task RemoveApproval(Player player, Character character, Instance instance, Boss boss)
+        {
+            Console.WriteLine("ApprovalService::RemoveApproval");
+
+            var path = $"players/{player.Id}/characters/{character.Id}/approvals/{instance.Id}/{boss.Id}";
+            Console.WriteLine($"DELETEing to {path}");
+            var result = await httpClient.DeleteAsync(path);
+            result.EnsureSuccessStatusCode();
+        }
     }
 }

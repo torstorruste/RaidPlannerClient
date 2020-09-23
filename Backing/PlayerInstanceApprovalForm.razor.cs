@@ -21,6 +21,12 @@ namespace RaidPlannerClient.Components
 
         public async void CheckboxClicked(Boss boss, Character character, object value) {
             Console.WriteLine($"CheckboxClicked: {boss.Name}, {character.Name}, {value}");
+            if((bool)value==true) {
+                await Approvals.AddApproval(boss, character);
+            } else {
+                await Approvals.RemoveApproval(boss, character);
+            }
+            StateHasChanged();
         }
 
         public bool IsApproved(Boss boss, Character character) {

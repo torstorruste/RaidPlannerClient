@@ -19,9 +19,9 @@
                     @foreach(var character in Player.Characters)
                     {
                         @if(IsApproved(boss, character)) {
-                            <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" checked /></td>
+                            <td><input id="b@boss.Id c@character.Id" type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" checked /></td>
                         } else {
-                            <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" /></td>
+                            <td><input id="b@boss.Id c@character.Id" type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" /></td>
                         }
                     }
                 </tr>

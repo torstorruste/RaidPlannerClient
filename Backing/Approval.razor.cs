@@ -39,9 +39,37 @@ namespace RaidPlannerClient.Pages
             return approvals.Exists(a => a.Boss.Id == boss.Id && a.Character.Id == character.Id);
         }
 
+        public async Task AddApproval(Boss boss, Character character)
+        {
+            Console.WriteLine($"AddApproval {boss.Name}, {character.Name}");
+            Player player = GetByCharacter(character);
+            Instance instance = GetByBoss(boss);
+            await approvalService.AddApproval(player, character, instance, boss);
+            approvals.Add(new Approval { Character = character, Boss = boss });
+        }
+
+        public async Task RemoveApproval(Boss boss, Character character)
+        {
+            Console.WriteLine($"RemoveApproval {boss.Name}, {character.Name}");
+            Player player = GetByCharacter(character);
+            Instance instance = GetByBoss(boss);
+            await approvalService.RemoveApproval(player, character, instance, boss);
+            approvals.RemoveAll(x=>x.Character.Id==character.Id && x.Boss.Id==boss.Id);
+        }
+
         public List<Instance> GetInstances()
         {
             return instances;
+        }
+
+        private Player GetByCharacter(Character character)
+        {
+            return players.Find(p => p.Characters.Exists(c => c.Id == character.Id));
+        }
+
+        private Instance GetByBoss(Boss boss)
+        {
+            return instances.Find(i => i.Bosses.Exists(b => b.Id == boss.Id));;
         }
     }
 }
