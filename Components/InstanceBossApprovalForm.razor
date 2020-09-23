@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+    <h4>@Boss.Name
+        <button @onclick="ToggleCollapse">
+            @( this.Collapse=="collapse" ? "+" : "-")
+        </button>
+    </h4>
+
+    <div class="@Collapse">
+    <table>
+        <thead>
+            <tr>
+                <th>Boss:</th>
+                <th>Approved:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var character in GetCharacters()) 
+            {
+                <tr>
+                    <td><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" /> @character.Name</td>
+                    @if(IsApproved(Boss, character)) {
+                        <td><input id="b@Boss.Id c@character.Id" type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
+                    } else {
+                        <td><input id="b@Boss.Id c@character.Id" type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" /></td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>

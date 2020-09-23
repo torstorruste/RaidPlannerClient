@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <h3>@Instance.Name
+        <button @onclick="ToggleCollapse">
+            @( this.Collapse=="collapse" ? "+" : "-")
+        </button>
+    </h3>
+
+    <div class="@Collapse">
+    @foreach (var boss in Instance.Bosses)
+    {
+        <InstanceBossApprovalForm Boss="@boss" Instance="@Instance" Approvals="@Approvals" />
+    }
+    </div>
+</div>

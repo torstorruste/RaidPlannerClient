@@ -1,8 +1,17 @@
 @page "/approval"
-Approval
-
-@if(approvals != null) {
-    @foreach(var player in players) {
-        <PlayerApprovalForm Player="@player" Approvals="@this" />
+<div style="float: left">
+    Players:
+    @if(approvals != null) {
+        @foreach(var player in players) {
+            <PlayerApprovalForm Player="@player" Approvals="@this" />
+        }
     }
-}
+</div>
+<div style="float: left">
+    Instances:
+    @if(approvals != null) {
+        @foreach(var instance in instances) {
+            <InstanceApprovalForm Instance="@instance" Approvals="@this" />
+        }
+    }
+</div>

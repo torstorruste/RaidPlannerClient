@@ -62,6 +62,11 @@ namespace RaidPlannerClient.Pages
             return instances;
         }
 
+        public List<Player> GetPlayers()
+        {
+            return players;
+        }
+
         private Player GetByCharacter(Character character)
         {
             return players.Find(p => p.Characters.Exists(c => c.Id == character.Id));
