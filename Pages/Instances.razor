@@ -1,0 +1,17 @@
+@page "/instances"
+@namespace RaidPlannerClient.Pages
+
+<h1>Instances</h1>
+@if (instances == null)
+{
+    <p><em>Loading...</em></p>
+}
+else {
+    <h3>New player</h3>
+    <InstanceForm Instance="@newInstance" Instances="@this" />
+
+    <h3>Existing players</h3>
+@foreach(var instance in instances) {
+    <InstanceForm Instance="@instance" Instances="@this" />
+}
+}

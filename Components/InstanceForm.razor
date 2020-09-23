@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@Instance">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputText id="name" @bind-Value="Instance.Name" />
+
+        <button type="submit">Submit</button>
+        <button @onclick="DeleteInstance">Delete</button>
+        <button @onclick="ToggleCollapse">
+            @( this.Collapse=="collapse" ? "+" : "-")
+        </button>
+    </EditForm>
+
+    <div class="panel panel-default border @Collapse">
+        <div class="panel-heading alert-primary">
+            <h3 class="panel-title">Bosses</h3>
+        </div>
+        @if(Instance != null) {
+            @foreach (var boss in Instance.Bosses)
+            {
+                <BossForm Instance="@Instance" Boss="@boss" InstanceForm="@this" />
+            }
+        }
+
+        <h4>New Boss</h4>
+        <BossForm Instance="@Instance" Boss="@newBoss" InstanceForm="@this" />
+    </div>
+
+    
+</div>
