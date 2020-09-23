@@ -19,6 +19,8 @@ namespace RaidPlannerClient.Components
         [Parameter]
         public Approvals Approvals { get; set; }
 
+        private string Collapse = "collapse";
+
         public async void CheckboxClicked(Boss boss, Character character, object value) {
             Console.WriteLine($"CheckboxClicked: {boss.Name}, {character.Name}, {value}");
             if((bool)value==true) {
@@ -33,6 +35,14 @@ namespace RaidPlannerClient.Components
             var isApproved = Approvals.IsApproved(boss, character);
             Console.WriteLine($"IsApproved({boss.Name}, {character.Name}): {isApproved}");
             return isApproved;
+        }
+
+        public void ToggleCollapse() {
+            if(Collapse=="collapse") {
+                Collapse = "";
+            } else {
+                Collapse = "collapse";
+            }
         }
     }
 }

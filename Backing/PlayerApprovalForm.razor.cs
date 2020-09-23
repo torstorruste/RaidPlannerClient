@@ -17,8 +17,18 @@ namespace RaidPlannerClient.Components
         [Parameter]
         public Approvals Approvals { get; set; }
 
+        private string Collapse = "collapse";
+
         public List<Instance> GetInstances() {
             return Approvals.GetInstances();
+        }
+
+        public void ToggleCollapse() {
+            if(Collapse=="collapse") {
+                Collapse = "";
+            } else {
+                Collapse = "collapse";
+            }
         }
     }
 }
