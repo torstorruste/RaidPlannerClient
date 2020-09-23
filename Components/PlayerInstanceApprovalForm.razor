@@ -12,7 +12,7 @@
                 <th>Boss:</th>
                 @foreach (var character in Player.Characters)
                 {
-                    <th>@character.Name</th>
+                    <th><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</th>
                 }
             </tr>
         </thead>
