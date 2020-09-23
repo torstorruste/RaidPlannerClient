@@ -1,9 +1,5 @@
 <div class="panel panel-default">
-    <h4>@Boss.Name
-        <button @onclick="ToggleCollapse">
-            @( this.Collapse=="collapse" ? "+" : "-")
-        </button>
-    </h4>
+    <h4 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Boss.Name</h4>
 
     <div class="@Collapse">
     <table>

@@ -1,9 +1,5 @@
 <div class="panel panel-default">
-    <h3>@Player.Name
-        <button @onclick="ToggleCollapse">
-            @( this.Collapse=="collapse" ? "+" : "-")
-        </button>
-    </h3>
+    <h3 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Player.Name</h3>
 
     <div class="@Collapse">
     @foreach (var instance in GetInstances())

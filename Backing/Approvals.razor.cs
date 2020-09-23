@@ -24,6 +24,9 @@ namespace RaidPlannerClient.Pages
         [Inject]
         private IInstanceService instanceService { get; set; }
 
+        private string CollapsedPlayers = "collapse";
+        private string CollapsedInstances = "collapse";
+
         protected override async Task OnInitializedAsync()
         {
             Console.WriteLine("Approval::OnInitializedAsync");
@@ -65,6 +68,22 @@ namespace RaidPlannerClient.Pages
         public List<Player> GetPlayers()
         {
             return players;
+        }
+
+        public void TogglePlayers() {
+            if(CollapsedPlayers=="collapse") {
+                CollapsedPlayers = "";
+            } else {
+                CollapsedPlayers = "collapse";
+            }
+        }
+
+        public void ToggleInstances() {
+            if(CollapsedInstances=="collapse") {
+                CollapsedInstances = "";
+            } else {
+                CollapsedInstances = "collapse";
+            }
         }
 
         private Player GetByCharacter(Character character)
