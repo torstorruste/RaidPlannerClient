@@ -4,13 +4,13 @@
         <div style="float: left"><h4>Team:</h4>
             @foreach (var role in GetRoles())
             {
-                <h3>@role <img src="images/roles/@(role).png" width="20px" height="20px" /></h3>
+                <h3><img src="images/roles/@(role).png" width="20px" height="20px" /> @role</h3>
                 <ul>
                 @foreach(var encounterPlayer in Encounter.Characters.Where(p=>p.Role==role)) {
                     var player = @GetPlayerByid(encounterPlayer.PlayerId);
                     var character = @GetCharacterById(encounterPlayer.CharacterId);
 
-                    <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))">@player.Name - @character.Name: @encounterPlayer.Role</li>
+                    <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))" class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</li>
                 }
                 </ul>
             }
@@ -30,7 +30,7 @@
                     @if(IsApproved(character)) {
                         <tr>
                             <td>@player.Name</td>
-                            <td><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</td>
+                            <td class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</td>
                             @foreach(var role in GetRoles()) {
                                 @if(character.Roles.Contains(role)) {
                                     <td @onclick="@(()=>Add(player, character, role))"><img src="images/roles/@(role).png" width="20px" height="20px" /></td>
