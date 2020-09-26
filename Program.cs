@@ -23,6 +23,8 @@ namespace RaidPlannerClient
             builder.Services.AddScoped<IInstanceService, InstanceService>();
             builder.Services.AddScoped<IBossService, BossService>();
             builder.Services.AddScoped<IApprovalService, ApprovalService>();
+            builder.Services.AddScoped<IRaidService, RaidService>();
+            builder.Services.AddScoped<IEncounterService, EncounterService>();
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:8080/") });
 
             await builder.Build().RunAsync();
