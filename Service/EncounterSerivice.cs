@@ -1,6 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using RaidPlannerClient.Mode;
+using RaidPlannerClient.Model;
 
 namespace RaidPlannerClient.Service {
     public class EncounterService : IEncounterService {

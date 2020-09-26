@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
-using RaidPlannerClient.Model;
 
-namespace RaidPlannerClient.Mode
+namespace RaidPlannerClient.Model
 {
     public class EncounterCharacter
     {

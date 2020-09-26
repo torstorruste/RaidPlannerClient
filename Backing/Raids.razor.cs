@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using RaidPlannerClient.Mode;
+using RaidPlannerClient.Model;
 using RaidPlannerClient.Service;
 
 namespace RaidPlannerClient.Pages

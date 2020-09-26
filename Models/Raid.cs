@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace RaidPlannerClient.Mode
+namespace RaidPlannerClient.Model
 {
     public class Raid
     {

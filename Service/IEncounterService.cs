@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using RaidPlannerClient.Mode;
 using RaidPlannerClient.Model;
 
 namespace RaidPlannerClient.Service {

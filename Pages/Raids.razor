@@ -6,6 +6,6 @@ Raids
 } else {
     @foreach (var raid in raids)
     {
-        <h4>@raid.Date.ToString("yyyy-MM-dd")</h4>
+        <RaidForm Raid="@raid" />
     }
 }

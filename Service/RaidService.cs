@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using RaidPlannerClient.Mode;
 using RaidPlannerClient.Model;
 
 namespace RaidPlannerClient.Service
