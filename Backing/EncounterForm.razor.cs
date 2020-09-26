@@ -24,7 +24,7 @@ namespace RaidPlannerClient.Components
         [Parameter]
         public List<Approval> Approvals { get; set; }
 
-        [Parameter]
+        [Inject]
         public IEncounterService EncounterService { get; set; }
 
         private string Collapse = "collapse";

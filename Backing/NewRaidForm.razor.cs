@@ -11,10 +11,10 @@ namespace RaidPlannerClient.Components
         public DateTime RaidDate { get; set; } = DateTime.Now;
 
         [Parameter]
-        public IRaidService RaidService { get; set; }
-
-        [Parameter]
         public Raids Raids { get; set; }
+        
+        [Inject]
+        public IRaidService RaidService { get; set; }
 
         public async void CreateNewRaid()
         {

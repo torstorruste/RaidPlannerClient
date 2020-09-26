@@ -26,16 +26,16 @@ namespace RaidPlannerClient.Components
         public List<Approval> Approvals { get; set; }
 
         [Parameter]
+        public Raids Raids { get; set; }
+
+        [Inject]
         public IRaidService RaidService { get; set; }
 
-        [Parameter]
+        [Inject]
         public IEncounterService EncounterService { get; set; }
 
-        [Parameter]
-        public Raids Raids { get; set; }[Inject]
+        [Inject]
         private IJSRuntime JSRuntime { get; set; }
-
-        public List<Player> PlayersToSignup { get; set; }
 
         private string Collapse = "collapse";
         private string SignupCollapse = "collapse";
@@ -103,9 +103,11 @@ namespace RaidPlannerClient.Components
 
         public async Task DeleteRaid()
         {
-            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to raid {Raid.Date}?");
-            await RaidService.DeleteRaid(Raid);
-            Raids.DeleteRaid(Raid);
+            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to raid {Raid.Date.ToString("yyyy-MM-dd")}?");
+            if(confirmed) {
+                await RaidService.DeleteRaid(Raid);
+                Raids.DeleteRaid(Raid);
+            }
         }
     }
 }
