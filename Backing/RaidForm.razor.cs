@@ -31,6 +31,7 @@ namespace RaidPlannerClient.Components
 
         public List<Player> PlayersToSignup { get; set; }
 
+        private string Collapse = "collapse";
         private string SignupCollapse = "collapse";
         private string EncountersCollapse = "collapse";
 
@@ -42,6 +43,18 @@ namespace RaidPlannerClient.Components
         public List<Player> GetSignedPlayers()
         {
             return Players.Where(p => Raid.SignedUp.Contains((int)p.Id)).ToList();
+        }
+
+        public void ToggleCollapse()
+        {
+            if (Collapse == "collapse")
+            {
+                Collapse = "";
+            }
+            else
+            {
+                Collapse = "collapse";
+            }
         }
 
         public void CollapseSignups()

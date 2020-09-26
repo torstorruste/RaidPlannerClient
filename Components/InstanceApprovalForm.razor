@@ -1,5 +1,5 @@
-<div class="panel panel-default">
-    <h3 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Instance.Name</h3>
+<div class="panel panel-default border">
+    <div class="panel-heading alert-primary"><h3 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Instance.Name</h3></div>
 
     <div class="@Collapse">
     @foreach (var boss in Instance.Bosses)

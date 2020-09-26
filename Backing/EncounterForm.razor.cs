@@ -91,5 +91,12 @@ namespace RaidPlannerClient.Components
             EncounterService.DeleteCharacter(Raid, Encounter, Encounter.Characters.First(p=>p.PlayerId==playerId));
             Encounter.Characters.RemoveAll(p => p.PlayerId == playerId);
         }
+
+        public List<EncounterCharacter> GetPlayersByRole(Role role) {
+            return Encounter.Characters
+                    .Where(p=>p.Role==role)
+                    .OrderBy(p=>GetCharacterById(p.CharacterId).Name)
+                    .ToList();
+        }
     }
 }

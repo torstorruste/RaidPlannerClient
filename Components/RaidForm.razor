@@ -1,30 +1,35 @@
-<div style="clear: both">
-    <h4>@Raid.Date.ToString("yyyy-MM-dd")</h4>
-
-    <h3 @onclick="CollapseSignups">@( this.SignupCollapse=="collapse" ? "+" : "-") Signups</h3>
-    <div class="@SignupCollapse">
-        <div style="float: left">
-            Unsigned:
-            <ul>
-                @foreach(var player in GetUnsignedPlayers()) {
-                    <li @onclick="@(()=>Signup(player))">@player.Name</li>
-                }
-            </ul>
+<div style="clear: both" class="panel panel-default border">
+    <div class="panel-heading alert-primary"><h4 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-")@Raid.Date.ToString("yyyy-MM-dd")</h4></div>
+    <div class="@Collapse">
+        <div style="padding-left: 10px">
+            <h3 @onclick="CollapseSignups">@( this.SignupCollapse=="collapse" ? "+" : "-") Signups</h3>
+            <div class="@SignupCollapse">
+                <div style="float: left">
+                    Unsigned:
+                    <ul>
+                        @foreach(var player in GetUnsignedPlayers()) {
+                            <li @onclick="@(()=>Signup(player))">@player.Name</li>
+                        }
+                    </ul>
+                </div>
+                <div style="float: left">
+                    Signed:
+                    <ul>
+                        @foreach(var player in GetSignedPlayers()) {
+                            <li @onclick="@(()=>Unsign(player))">@player.Name</li>
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div style="float: left">
-            Signed:
-            <ul>
-                @foreach(var player in GetSignedPlayers()) {
-                    <li @onclick="@(()=>Unsign(player))">@player.Name</li>
-                }
-            </ul>
-        </div>
-    </div>
 
-    <h3 @onclick="CollapseEncounters">@( this.EncountersCollapse=="collapse" ? "+" : "-") Encounters</h3>
-    <div class="@EncountersCollapse">
-        @foreach(var encounter in Raid.Encounters) {
-            <EncounterForm Raid="@Raid" Encounter="@encounter" Players="@Players" Approvals="@Approvals" Instances="@Instances" EncounterService="@EncounterService" />
-        }
+        <div style="padding-left: 10px; clear: both">
+            <h3 @onclick="CollapseEncounters">@( this.EncountersCollapse=="collapse" ? "+" : "-") Encounters</h3>
+            <div class="@EncountersCollapse" style="padding-left: 10px">
+                @foreach(var encounter in Raid.Encounters) {
+                    <EncounterForm Raid="@Raid" Encounter="@encounter" Players="@Players" Approvals="@Approvals" Instances="@Instances" EncounterService="@EncounterService" />
+                }
+            </div>
+        </div>
     </div>
 </div>
