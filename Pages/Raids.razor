@@ -5,6 +5,6 @@
 } else {
     @foreach (var raid in raids)
     {
-        <RaidForm Raid="@raid" Players="@players" RaidService="@raidService" />
+        <RaidForm Raid="@raid" Players="@players" Instances="@instances" Approvals="@approvals" RaidService="@raidService" EncounterService="@encounterService" />
     }
 }

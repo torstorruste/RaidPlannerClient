@@ -13,11 +13,24 @@ namespace RaidPlannerClient.Pages
 
         private List<Player> players;
 
+        private List<Instance> instances;
+
+        private List<Approval> approvals;
+
         [Inject]
         private IRaidService raidService { get; set; }
 
         [Inject]
         private IPlayerService playerService { get; set; }
+
+        [Inject]
+        private IInstanceService instanceService { get; set; }
+
+        [Inject]
+        private IApprovalService approvalService { get; set; }
+
+        [Inject]
+        private IEncounterService encounterService { get; set; }
 
 
         protected override async Task OnInitializedAsync()
@@ -25,6 +38,8 @@ namespace RaidPlannerClient.Pages
             Console.WriteLine("Raids::OnInitializedAsync");
             raids = await raidService.GetRaids();
             players = await playerService.GetPlayers();
+            instances = await instanceService.GetInstances();
+            approvals = await approvalService.GetApprovals();
         }
     }
 }

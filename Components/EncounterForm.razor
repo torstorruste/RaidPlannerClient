@@ -1,0 +1,48 @@
+<div style="clear: both">
+    <h3 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @GetBossById(Encounter.BossId).Name</h3>
+    <div class="@Collapse">
+        <div style="float: left"><h4>Team:</h4>
+            @foreach (var role in GetRoles())
+            {
+                <h3>@role <img src="images/roles/@(role).png" width="20px" height="20px" /></h3>
+                <ul>
+                @foreach(var encounterPlayer in Encounter.Characters.Where(p=>p.Role==role)) {
+                    var player = @GetPlayerByid(encounterPlayer.PlayerId);
+                    var character = @GetCharacterById(encounterPlayer.CharacterId);
+
+                    <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))">@player.Name - @character.Name: @encounterPlayer.Role</li>
+                }
+                </ul>
+            }
+        </div>
+        <div style="float: left"><h4>Bench</h4>
+            <table>
+                <tr>
+                    <th>Player:</th>
+                    <th>Character:</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            @foreach(var player in GetBenchedPlayers()) {
+                @foreach(var character in player.Characters) {
+                    @if(IsApproved(character)) {
+                        <tr>
+                            <td>@player.Name</td>
+                            <td><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</td>
+                            @foreach(var role in GetRoles()) {
+                                @if(character.Roles.Contains(role)) {
+                                    <td @onclick="@(()=>Add(player, character, role))"><img src="images/roles/@(role).png" width="20px" height="20px" /></td>
+                                } else {
+                                    <td></td>
+                                }
+                            }
+                        </tr>
+                    }
+                }
+            }
+            </table>
+        </div>
+    </div>
+</div>

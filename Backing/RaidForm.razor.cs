@@ -18,11 +18,21 @@ namespace RaidPlannerClient.Components
         public List<Player> Players { get; set; }
 
         [Parameter]
+        public List<Instance> Instances { get; set; }
+
+        [Parameter]
+        public List<Approval> Approvals { get; set; }
+
+        [Parameter]
         public IRaidService RaidService { get; set; }
+
+        [Parameter]
+        public IEncounterService EncounterService { get; set; }
 
         public List<Player> PlayersToSignup { get; set; }
 
         private string SignupCollapse = "collapse";
+        private string EncountersCollapse = "collapse";
 
         public List<Player> GetUnsignedPlayers()
         {
@@ -43,6 +53,18 @@ namespace RaidPlannerClient.Components
             else
             {
                 SignupCollapse = "collapse";
+            }
+        }
+
+        public void CollapseEncounters()
+        {
+            if (EncountersCollapse == "collapse")
+            {
+                EncountersCollapse = "";
+            }
+            else
+            {
+                EncountersCollapse = "collapse";
             }
         }
 
