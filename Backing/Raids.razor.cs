@@ -48,5 +48,10 @@ namespace RaidPlannerClient.Pages
             raids.Sort((a,b)=>b.Date.CompareTo(a.Date));
             StateHasChanged();
         }
+
+        internal void DeleteRaid(Raid raid) {
+            raids.Remove(raid);
+            StateHasChanged();
+        }
     }
 }

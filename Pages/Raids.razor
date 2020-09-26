@@ -6,6 +6,7 @@
     <NewRaidForm RaidService="@raidService" Raids="@this" />
     @foreach (var raid in raids)
     {
-        <RaidForm Raid="@raid" Players="@players" Instances="@instances" Approvals="@approvals" RaidService="@raidService" EncounterService="@encounterService" />
+        <RaidForm Raid="@raid" Players="@players" Instances="@instances" Approvals="@approvals" 
+        RaidService="@raidService" EncounterService="@encounterService" Raids="@this" />
     }
 }
