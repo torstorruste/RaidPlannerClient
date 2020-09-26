@@ -3,6 +3,7 @@
 @if(raids==null) {
     <h3>Loading raids...</h3>
 } else {
+    <NewRaidForm RaidService="@raidService" Raids="@this" />
     @foreach (var raid in raids)
     {
         <RaidForm Raid="@raid" Players="@players" Instances="@instances" Approvals="@approvals" RaidService="@raidService" EncounterService="@encounterService" />

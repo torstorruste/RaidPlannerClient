@@ -26,6 +26,7 @@ namespace RaidPlannerClient.Pages
         [Inject]
         private IInstanceService instanceService { get; set; }
 
+
         [Inject]
         private IApprovalService approvalService { get; set; }
 
@@ -40,6 +41,12 @@ namespace RaidPlannerClient.Pages
             players = await playerService.GetPlayers();
             instances = await instanceService.GetInstances();
             approvals = await approvalService.GetApprovals();
+        }
+        internal void AddRaid(Raid raid)
+        {
+            raids.Add(raid);
+            raids.Sort((a,b)=>b.Date.CompareTo(a.Date));
+            StateHasChanged();
         }
     }
 }

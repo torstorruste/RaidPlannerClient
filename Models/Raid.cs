@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using RaidPlannerClient.Service;
 
 namespace RaidPlannerClient.Model
 {
@@ -10,6 +10,7 @@ namespace RaidPlannerClient.Model
         [JsonProperty("id")]
         public int Id { get; set; }
 
+        [JsonConverter(typeof(DateTimeConverter))]
         [JsonProperty("date")]
         public DateTime Date { get; set; }
 

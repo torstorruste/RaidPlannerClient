@@ -17,14 +17,35 @@ namespace RaidPlannerClient.Service
             this.httpClient = httpClient;
         }
 
-        public Task<Raid> AddRaid(Raid raid)
+        public async Task<Raid> AddRaid(Raid raid)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("RaidService::AddRaid");
+
+            var jsonToPost = JsonConvert.SerializeObject(raid);
+            var path = $"raids";
+            Console.WriteLine($"POSTing to {path}");
+            var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
+            
+            if(result.IsSuccessStatusCode) {
+                var json = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Raid>(json);
+            } else {
+                var message = await result.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+
+                result.EnsureSuccessStatusCode();
+                return new Raid();
+            }
         }
 
-        public Task DeleteRaid(Raid raid)
+        public async Task DeleteRaid(Raid raid)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("RaidService::DeleteRaid");
+
+            var path = $"raids/{raid.Id}";
+            Console.WriteLine($"DELETEing to {path}");
+            var result = await httpClient.DeleteAsync(path);
+            result.EnsureSuccessStatusCode();
         }
 
         public async Task<List<Raid>> GetRaids()
