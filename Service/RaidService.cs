@@ -38,7 +38,7 @@ namespace RaidPlannerClient.Service
             var json = await result.Content.ReadAsStringAsync();
             var raids = JsonConvert.DeserializeObject<List<Raid>>(json);
 
-            raids.Sort((a,b)=>a.Date.CompareTo(b.Date));
+            raids.Sort((a,b)=>b.Date.CompareTo(a.Date));
 
             return raids;
         }

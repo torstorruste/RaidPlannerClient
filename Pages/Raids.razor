@@ -1,3 +1,11 @@
 @page "/raids"
 
 Raids
+@if(raids==null) {
+    <h3>Loading...</h3>
+} else {
+    @foreach (var raid in raids)
+    {
+        <h4>@raid.Date.ToString("yyyy-MM-dd")</h4>
+    }
+}
