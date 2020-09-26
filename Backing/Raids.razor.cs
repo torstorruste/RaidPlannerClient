@@ -11,14 +11,20 @@ namespace RaidPlannerClient.Pages
     {
         private List<Raid> raids;
 
+        private List<Player> players;
+
         [Inject]
         private IRaidService raidService { get; set; }
-        
+
+        [Inject]
+        private IPlayerService playerService { get; set; }
+
 
         protected override async Task OnInitializedAsync()
         {
             Console.WriteLine("Raids::OnInitializedAsync");
             raids = await raidService.GetRaids();
+            players = await playerService.GetPlayers();
         }
     }
 }

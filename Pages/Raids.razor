@@ -1,11 +1,10 @@
 @page "/raids"
 
-Raids
 @if(raids==null) {
-    <h3>Loading...</h3>
+    <h3>Loading raids...</h3>
 } else {
     @foreach (var raid in raids)
     {
-        <RaidForm Raid="@raid" />
+        <RaidForm Raid="@raid" Players="@players" RaidService="@raidService" />
     }
 }

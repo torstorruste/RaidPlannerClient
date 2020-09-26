@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using RaidPlannerClient.Model;
@@ -42,14 +43,25 @@ namespace RaidPlannerClient.Service
             return raids;
         }
 
-        public Task Signup(Raid raid, Player player)
+        public async Task Signup(Raid raid, Player player)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("RaidService::Signup");
+
+            var jsonToPost = JsonConvert.SerializeObject(player);
+            var path = $"raids/{raid.Id}/signups";
+            Console.WriteLine($"POSTing to {path}");
+            var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
+            result.EnsureSuccessStatusCode();
         }
 
-        public Task Unsign(Raid raid, Player player)
+        public async Task Unsign(Raid raid, Player player)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("RaidService::Unsign");
+
+            var path = $"raids/{raid.Id}/signups/{player.Id}";
+            Console.WriteLine($"DELETEing to {path}");
+            var result = await httpClient.DeleteAsync(path);
+            result.EnsureSuccessStatusCode();
         }
     }
 }

@@ -1,3 +1,22 @@
-<div>
+<div style="clear: both">
     <h4>@Raid.Date.ToString("yyyy-MM-dd")</h4>
+
+    <div><h3 @onclick="CollapseSignups">@( this.SignupCollapse=="collapse" ? "+" : "-") Signups</h3>
+        <div style="float: left" class="@SignupCollapse">
+            Unsigned:
+            <ul>
+                @foreach(var player in GetUnsignedPlayers()) {
+                    <li @onclick="@(()=>Signup(player))">@player.Name</li>
+                }
+            </ul>
+        </div>
+        <div style="float: left"  class="@SignupCollapse">
+            Signed:
+            <ul>
+                @foreach(var player in GetSignedPlayers()) {
+                    <li @onclick="@(()=>Unsign(player))">@player.Name</li>
+                }
+            </ul>
+        </div>
+    </div>
 </div>
