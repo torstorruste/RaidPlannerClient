@@ -1,10 +1,7 @@
 <div class="panel-body">
-    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@Boss">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <InputText id="name" @bind-Value="Boss.Name" />
+    <MatTextField label="Name" @bind-Value="Boss.Name" OnKeyPress="@OnKeypressHandler"></MatTextField>
 
-        <button type="submit">Submit</button>
-        <button @onclick="DeleteBoss">Delete</button>
-    </EditForm>
+    @if(Boss != null && Boss.Id!=null) {
+        <MatButton Icon="delete" OnClick="@DeleteBoss" />
+    }
 </div>

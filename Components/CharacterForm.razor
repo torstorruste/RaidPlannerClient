@@ -26,6 +26,8 @@
         <InputCheckbox @bind-Value="IsRanged" />
 
         <button type="submit">Submit</button>
-        <button @onclick="DeleteCharacter">Delete</button>
+        @if(Character!=null && Character.Id!=null) {
+            <MatButton Icon="delete" OnClick="@DeleteCharacter"></MatButton>
+        }
     </EditForm>
 </div>

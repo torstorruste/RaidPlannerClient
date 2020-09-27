@@ -23,7 +23,7 @@ namespace RaidPlannerClient.Components
 
         private string Collapse = "collapse";
 
-        private Boss newBoss = new Boss();
+        private Boss newBoss = new Boss{Id=null};
 
         public async void HandleValidSubmit()
         {
@@ -41,7 +41,7 @@ namespace RaidPlannerClient.Components
 
         public void AddBoss(Boss boss)
         {
-            newBoss = new Boss();
+            newBoss = new Boss{Id=null};
             Instance.Bosses.Add(boss);
             UpdateBosses();
         }

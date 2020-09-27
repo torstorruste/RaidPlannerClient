@@ -1,5 +1,5 @@
 <div style="clear: both" class="panel panel-default border">
-    <div class="panel-heading alert-primary"><h4><span @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-")@Raid.Date.ToString("yyyy-MM-dd")</span><MatButton Icon="delete" OnClick="@DeleteRaid">Delete</MatButton></h4></div>
+    <div class="panel-heading alert-primary"><h4><span @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-")@Raid.Date.ToString("yyyy-MM-dd")</span><MatButton Icon="delete" OnClick="@DeleteRaid"></MatButton></h4></div>
     <div class="@Collapse">
         <div style="padding-left: 10px">
             <h3 @onclick="CollapseSignups">@( this.SignupCollapse=="collapse" ? "+" : "-") Signups</h3>

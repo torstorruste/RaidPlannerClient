@@ -7,10 +7,10 @@
     <p><em>Loading...</em></p>
 }
 else {
-    <h3>New player</h3>
+    <h3>New Instance</h3>
     <InstanceForm Instance="@newInstance" Instances="@this" />
 
-    <h3>Existing players</h3>
+    <h3>Existing Instances</h3>
 @foreach(var instance in instances) {
     <InstanceForm Instance="@instance" Instances="@this" />
 }
