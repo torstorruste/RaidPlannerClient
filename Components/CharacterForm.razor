@@ -1,33 +1,40 @@
 <div class="panel-body">
-    <EditForm OnValidSubmit="@HandleValidSubmit" Model="@Character">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <InputText id="name" @bind-Value="Character.Name" />
+        <MatTextField label="Name" @bind-Value="Character.Name" OnFocusOut="HandleValidSubmit"></MatTextField>
         
         <img src="images/classes/@(Character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />
-        <InputSelect @bind-Value="Character.CharacterClass">
-            <option value="">Select class:</option>
-            @foreach (var value in Enum.GetValues(typeof(CharacterClass)))
-            {
-                <option>@value</option>
-            }
-        </InputSelect>
+        <MatSelectItem @bind-Value="Character.CharacterClass" Items="@GetClasses()" @onfocusout="HandleValidSubmit">
+            <ItemTemplate><span class="@context">@context</span></ItemTemplate>
+        </MatSelectItem>
 
         <img src="images/roles/tank.png"/>
-        <InputCheckbox @bind-Value="IsTank" />
-        
+        @if(IsTank) {
+            <input type="checkbox" @onchange="e=>{UpdateRole(Role.Healer, e.Value);}" checked />
+        } else {
+            <input type="checkbox" @onchange="e=>{UpdateRole(Role.Healer, e.Value);}" />
+        }
+
         <img src="images/roles/healer.png"/>
-        <InputCheckbox @bind-Value="IsHealer" />
+        @if(IsHealer) {
+            <input type="checkbox" @onchange="e=>UpdateRole(Role.Healer, e.Value)" checked />
+        } else {
+            <input type="checkbox" @onchange="e=>UpdateRole(Role.Healer, e.Value)"/>
+        }
 
         <img src="images/roles/melee.png"/>
-        <InputCheckbox @bind-Value="IsMelee" />
+        @if(IsMelee) {
+            <input type="checkbox" @onchange="e=>UpdateRole(Role.Melee, e.Value)" checked />
+        } else {
+            <input type="checkbox" @onchange="e=>UpdateRole(Role.Melee, e.Value)"/>
+        }
 
         <img src="images/roles/ranged.png"/>
-        <InputCheckbox @bind-Value="IsRanged" />
+        @if(IsRanged) {
+            <input type="checkbox" @onchange="e=>UpdateRole(Role.Ranged, e.Value)" checked />
+        } else {
+            <input type="checkbox" @onchange="e=>UpdateRole(Role.Ranged, e.Value)"/>
+        }
 
-        <button type="submit">Submit</button>
         @if(Character!=null && Character.Id!=null) {
             <MatButton Icon="delete" OnClick="@DeleteCharacter"></MatButton>
         }
-    </EditForm>
 </div>
