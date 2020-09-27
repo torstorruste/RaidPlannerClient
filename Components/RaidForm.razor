@@ -26,8 +26,10 @@
         <div style="padding-left: 10px; clear: both">
             <h3 @onclick="CollapseEncounters">@( this.EncountersCollapse=="collapse" ? "+" : "-") Encounters</h3>
             <div class="@EncountersCollapse" style="padding-left: 10px">
+                <NewEncounterForm Raid="@Raid" Instances="@Instances" RaidForm="@this" />
+
                 @foreach(var encounter in Raid.Encounters) {
-                    <EncounterForm Raid="@Raid" Encounter="@encounter" Players="@Players" Approvals="@Approvals" Instances="@Instances" />
+                    <EncounterForm Raid="@Raid" Encounter="@encounter" Players="@Players" Approvals="@Approvals" Instances="@Instances" RaidForm="@this" />
                 }
             </div>
         </div>

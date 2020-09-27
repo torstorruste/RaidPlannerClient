@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using RaidPlannerClient.Model;
 using RaidPlannerClient.Service;
 
@@ -24,8 +25,14 @@ namespace RaidPlannerClient.Components
         [Parameter]
         public List<Approval> Approvals { get; set; }
 
+        [Parameter]
+        public RaidForm RaidForm { get; set; }
+
         [Inject]
         public IEncounterService EncounterService { get; set; }
+        
+        [Inject]
+        private IJSRuntime JSRuntime { get; set; }
 
         private string Collapse = "collapse";
 
@@ -88,15 +95,25 @@ namespace RaidPlannerClient.Components
         {
             var player = Players.Where(p => p.Id == playerId).First();
             Console.WriteLine($"Removing {player.Name}");
-            EncounterService.DeleteCharacter(Raid, Encounter, Encounter.Characters.First(p=>p.PlayerId==playerId));
+            EncounterService.DeleteCharacter(Raid, Encounter, Encounter.Characters.First(p => p.PlayerId == playerId));
             Encounter.Characters.RemoveAll(p => p.PlayerId == playerId);
         }
 
-        public List<EncounterCharacter> GetPlayersByRole(Role role) {
+        public List<EncounterCharacter> GetPlayersByRole(Role role)
+        {
             return Encounter.Characters
-                    .Where(p=>p.Role==role)
-                    .OrderBy(p=>GetCharacterById(p.CharacterId).Name)
+                    .Where(p => p.Role == role)
+                    .OrderBy(p => GetCharacterById(p.CharacterId).Name)
                     .ToList();
+        }
+
+        public async void DeleteEncounter()
+        {
+            bool confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to delete encounter {GetBossById(Encounter.BossId).Name}?");
+            if(confirmed) {
+                await EncounterService.DeleteEncounter(Raid, Encounter);
+                RaidForm.DeleteEncounter(Encounter);
+            }
         }
     }
 }

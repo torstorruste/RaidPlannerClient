@@ -14,14 +14,29 @@ namespace RaidPlannerClient.Service {
             this.httpClient = httpClient;
         }
 
-        public Task<Encounter> AddEncounter(Raid raid, Encounter encounter)
+        public async Task<Encounter> AddEncounter(Raid raid, Boss boss)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("EncounterService::AddEncounter");
+
+            var jsonToPost = JsonConvert.SerializeObject(boss);
+            var path = $"raids/{raid.Id}/encounters";
+            Console.WriteLine($"POSTing to {path}");
+            var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
+            
+            result.EnsureSuccessStatusCode();
+            var json = await result.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<Encounter>(json);
         }
 
-        public Task DeleteEncounter(Raid raid, Encounter encounter)
+        public async Task DeleteEncounter(Raid raid, Encounter encounter)
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("EncounterService::AddEncounter");
+
+            var jsonToPost = JsonConvert.SerializeObject(encounter);
+            var path = $"raids/{raid.Id}/encounters/{encounter.Id}";
+            Console.WriteLine($"DELETEing to {path}");
+            var result = await httpClient.DeleteAsync(path);
+            result.EnsureSuccessStatusCode();
         }
 
         public async Task AddCharacter(Raid raid, Encounter encounter, EncounterCharacter character)

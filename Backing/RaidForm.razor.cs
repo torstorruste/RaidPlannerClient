@@ -10,7 +10,7 @@ using RaidPlannerClient.Service;
 
 namespace RaidPlannerClient.Components
 {
-    public partial class RaidForm
+    public partial class RaidForm : ComponentBase
     {
 
         [Parameter]
@@ -108,6 +108,17 @@ namespace RaidPlannerClient.Components
                 await RaidService.DeleteRaid(Raid);
                 Raids.DeleteRaid(Raid);
             }
+        }
+        internal void AddEncounter(Encounter encounter)
+        {
+            Raid.Encounters.Add(encounter);
+            StateHasChanged();
+        }
+
+        internal void DeleteEncounter(Encounter encounter)
+        {
+            Raid.Encounters.Remove(encounter);
+            StateHasChanged();
         }
     }
 }

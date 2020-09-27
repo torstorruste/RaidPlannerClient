@@ -1,0 +1,8 @@
+<div>
+    @if(Bosses != null) {
+        <MatSelectItem @bind-Value="SelectedBoss" Items="@Bosses">
+            <ItemTemplate>@context?.Name</ItemTemplate>
+        </MatSelectItem>
+        <MatButton Icon="new" @onclick="AddEncounter">Add Encounter</MatButton>
+    }
+</div>

@@ -4,7 +4,7 @@ using RaidPlannerClient.Model;
 namespace RaidPlannerClient.Service {
 
     public interface IEncounterService {
-        Task<Encounter> AddEncounter(Raid raid, Encounter encounter);
+        Task<Encounter> AddEncounter(Raid raid, Boss boss);
 
         Task DeleteEncounter(Raid raid, Encounter encounter);
 
