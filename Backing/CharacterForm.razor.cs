@@ -41,7 +41,11 @@ namespace RaidPlannerClient.Components
             if (IsChanged())
             {
                 Character.Roles = GetRolesFromCheckboxes();
-                if (Character.Id == null)
+                if (Character.Id == null && Character.Name == null && Character.Name != "")
+                {
+                    Console.WriteLine("Id and name are null, doing nothing");
+                }
+                else if (Character.Id == null)
                 {
                     Character = await characterService.AddCharacter(Player, Character);
                     PlayerForm.AddCharacter(Character);
@@ -71,7 +75,7 @@ namespace RaidPlannerClient.Components
 
         private bool HasRole(Role role)
         {
-            return Character.Roles.Contains(role);
+            return Character.Roles!=null &&  Character.Roles.Contains(role);
         }
 
         public void UpdateRole(Role role, object checkedValue)
