@@ -22,8 +22,8 @@ namespace RaidPlannerClient.Service
             Console.WriteLine("InstanceService::AddInstance");
 
             var InstanceJson = JsonConvert.SerializeObject(instance);
-            Console.WriteLine("POSTing to instances");
-            var result = await httpClient.PostAsync("instances", new StringContent(InstanceJson, Encoding.UTF8, "application/json"));
+            Console.WriteLine("POSTing to rest/instances");
+            var result = await httpClient.PostAsync("rest/instances", new StringContent(InstanceJson, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
 
             var json = await result.Content.ReadAsStringAsync();
@@ -35,8 +35,8 @@ namespace RaidPlannerClient.Service
             Console.WriteLine("InstanceService::UpdateInstance");
 
             var InstanceJson = JsonConvert.SerializeObject(instance);
-            Console.WriteLine($"PUTing to instances/{instance.Id}");
-            var result = await httpClient.PutAsync($"instances/{instance.Id}", new StringContent(InstanceJson, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"PUTing to rest/instances/{instance.Id}");
+            var result = await httpClient.PutAsync($"rest/instances/{instance.Id}", new StringContent(InstanceJson, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
         }
 
@@ -44,8 +44,8 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("InstanceService::GetInstances");
 
-            Console.WriteLine("GETting Instances");
-            var result = await httpClient.GetAsync("/instances");
+            Console.WriteLine("GETting rest/instances");
+            var result = await httpClient.GetAsync("rest/instances");
             result.EnsureSuccessStatusCode();
 
             var json = await result.Content.ReadAsStringAsync();
@@ -63,8 +63,8 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("InstanceService::DeleteInstance");
 
-            Console.WriteLine($"DELETEing to instances/{instance.Id}");
-            var result = await httpClient.DeleteAsync($"instances/{instance.Id}");
+            Console.WriteLine($"DELETEing to rest/instances/{instance.Id}");
+            var result = await httpClient.DeleteAsync($"rest/instances/{instance.Id}");
             result.EnsureSuccessStatusCode();
         }
     }

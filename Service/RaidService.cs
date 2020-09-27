@@ -22,7 +22,7 @@ namespace RaidPlannerClient.Service
             Console.WriteLine("RaidService::AddRaid");
 
             var jsonToPost = JsonConvert.SerializeObject(raid);
-            var path = $"raids";
+            var path = $"rest/raids";
             Console.WriteLine($"POSTing to {path}");
             var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
             
@@ -42,7 +42,7 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("RaidService::DeleteRaid");
 
-            var path = $"raids/{raid.Id}";
+            var path = $"rest/raids/{raid.Id}";
             Console.WriteLine($"DELETEing to {path}");
             var result = await httpClient.DeleteAsync(path);
             result.EnsureSuccessStatusCode();
@@ -52,8 +52,8 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("RaidService::GetRaids");
 
-            Console.WriteLine("GETting raids");
-            var result = await httpClient.GetAsync("/raids");
+            Console.WriteLine("GETting rest/raids");
+            var result = await httpClient.GetAsync("rest/raids");
             result.EnsureSuccessStatusCode();
 
             var json = await result.Content.ReadAsStringAsync();
@@ -69,7 +69,7 @@ namespace RaidPlannerClient.Service
             Console.WriteLine("RaidService::Signup");
 
             var jsonToPost = JsonConvert.SerializeObject(player);
-            var path = $"raids/{raid.Id}/signups";
+            var path = $"rest/raids/{raid.Id}/signups";
             Console.WriteLine($"POSTing to {path}");
             var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
@@ -79,7 +79,7 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("RaidService::Unsign");
 
-            var path = $"raids/{raid.Id}/signups/{player.Id}";
+            var path = $"rest/raids/{raid.Id}/signups/{player.Id}";
             Console.WriteLine($"DELETEing to {path}");
             var result = await httpClient.DeleteAsync(path);
             result.EnsureSuccessStatusCode();

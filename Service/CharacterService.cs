@@ -17,8 +17,8 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("CharacterService::AddCharacter");
 
             var json = JsonConvert.SerializeObject(character);
-            Console.WriteLine($"POSTing to players/{player.Id}/characters");
-            var result = await httpClient.PostAsync($"players/{player.Id}/characters", new StringContent(json, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"POSTing to rest/players/{player.Id}/characters");
+            var result = await httpClient.PostAsync($"rest/players/{player.Id}/characters", new StringContent(json, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
 
             var resultJson = await result.Content.ReadAsStringAsync();
@@ -29,15 +29,15 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("CharacterService::UpdateCharacter");
 
             var json = JsonConvert.SerializeObject(character);
-            Console.WriteLine($"PUTing to players/{player.Id}/characters/{character.Id}");
-            var result = await httpClient.PutAsync($"players/{player.Id}/characters/{character.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"PUTing to rest/players/{player.Id}/characters/{character.Id}");
+            var result = await httpClient.PutAsync($"rest/players/{player.Id}/characters/{character.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
         }
         public async void DeleteCharacter(Player player, Character character) {
             Console.WriteLine("CharacterService::DeleteCharacter");
 
-            Console.WriteLine($"DELETEing to players/{player.Id}/characters/{character.Id}");
-            var result = await httpClient.DeleteAsync($"players/{player.Id}/characters/{character.Id}");
+            Console.WriteLine($"DELETEing to rest/players/{player.Id}/characters/{character.Id}");
+            var result = await httpClient.DeleteAsync($"rest/players/{player.Id}/characters/{character.Id}");
             result.EnsureSuccessStatusCode();
         }
     }

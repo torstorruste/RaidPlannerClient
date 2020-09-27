@@ -19,7 +19,7 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("EncounterService::AddEncounter");
 
             var jsonToPost = JsonConvert.SerializeObject(boss);
-            var path = $"raids/{raid.Id}/encounters";
+            var path = $"rest/raids/{raid.Id}/encounters";
             Console.WriteLine($"POSTing to {path}");
             var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
             
@@ -33,7 +33,7 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("EncounterService::AddEncounter");
 
             var jsonToPost = JsonConvert.SerializeObject(encounter);
-            var path = $"raids/{raid.Id}/encounters/{encounter.Id}";
+            var path = $"rest/raids/{raid.Id}/encounters/{encounter.Id}";
             Console.WriteLine($"DELETEing to {path}");
             var result = await httpClient.DeleteAsync(path);
             result.EnsureSuccessStatusCode();
@@ -44,7 +44,7 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("EncounterService::AddCharacter");
 
             var jsonToPost = JsonConvert.SerializeObject(character);
-            var path = $"raids/{raid.Id}/encounters/{encounter.Id}/characters";
+            var path = $"rest/raids/{raid.Id}/encounters/{encounter.Id}/characters";
             Console.WriteLine($"POSTing to {path}");
             var result = await httpClient.PostAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
@@ -55,7 +55,7 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("EncounterService::DeleteCharacter");
 
             var jsonToPost = JsonConvert.SerializeObject(character);
-            var path = $"raids/{raid.Id}/encounters/{encounter.Id}/characters/{character.CharacterId}";
+            var path = $"rest/raids/{raid.Id}/encounters/{encounter.Id}/characters/{character.CharacterId}";
             Console.WriteLine($"DELETEing to {path}");
             var result = await httpClient.DeleteAsync(path);
             result.EnsureSuccessStatusCode();

@@ -22,8 +22,8 @@ namespace RaidPlannerClient.Service
             Console.WriteLine("PlayerService::AddPlayer");
 
             var playerJson = JsonConvert.SerializeObject(player);
-            Console.WriteLine("POSTing to players");
-            var result = await httpClient.PostAsync("players", new StringContent(playerJson, Encoding.UTF8, "application/json"));
+            Console.WriteLine("POSTing to rest/players");
+            var result = await httpClient.PostAsync("rest/players", new StringContent(playerJson, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
 
             var json = await result.Content.ReadAsStringAsync();
@@ -35,8 +35,8 @@ namespace RaidPlannerClient.Service
             Console.WriteLine("PlayerService::UpdatePlayer");
 
             var playerJson = JsonConvert.SerializeObject(player);
-            Console.WriteLine($"PUTing to players/{player.Id}");
-            var result = await httpClient.PutAsync($"players/{player.Id}", new StringContent(playerJson, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"PUTing to rest/players/{player.Id}");
+            var result = await httpClient.PutAsync($"rest/players/{player.Id}", new StringContent(playerJson, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
         }
 
@@ -44,8 +44,8 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("PlayerService::GetPlayers");
 
-            Console.WriteLine("GETting players");
-            var result = await httpClient.GetAsync("/players");
+            Console.WriteLine("GETting rest/players");
+            var result = await httpClient.GetAsync("rest/players");
             result.EnsureSuccessStatusCode();
 
             var json = await result.Content.ReadAsStringAsync();
@@ -63,8 +63,8 @@ namespace RaidPlannerClient.Service
         {
             Console.WriteLine("PlayerService::DeletePlayer");
 
-            Console.WriteLine($"DELETEing to players/{player.Id}");
-            var result = await httpClient.DeleteAsync($"players/{player.Id}");
+            Console.WriteLine($"DELETEing to rest/players/{player.Id}");
+            var result = await httpClient.DeleteAsync($"rest/players/{player.Id}");
             result.EnsureSuccessStatusCode();
         }
     }

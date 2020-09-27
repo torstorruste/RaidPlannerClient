@@ -41,9 +41,12 @@ namespace RaidPlannerClient.Components
             return Players.Where(p => p.Id == id).First();
         }
 
-        public Character GetCharacterById(int id)
+        public Character GetCharacterById(int? id)
         {
-            return Players.SelectMany(p => p.Characters).Where(c => c.Id == id).First();
+            Console.WriteLine($"Getting character with id {id}");
+            var character = Players.SelectMany(p => p.Characters).Where(c => c.Id == id).FirstOrDefault();
+            if(character.Name != null) return character;
+            else return new Character{Name="Unknown"};
         }
 
         public Boss GetBossById(int id)
@@ -103,6 +106,7 @@ namespace RaidPlannerClient.Components
         {
             return Encounter.Characters
                     .Where(p => p.Role == role)
+                    .Where(p=>Players.SelectMany(p=>p.Characters).Any(c=>c.Id==p.CharacterId))
                     .OrderBy(p => GetCharacterById(p.CharacterId).Name)
                     .ToList();
         }

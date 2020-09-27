@@ -17,8 +17,8 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("BossService::AddBoss");
 
             var json = JsonConvert.SerializeObject(boss);
-            Console.WriteLine($"POSTing to instances/{instance.Id}/bosses");
-            var result = await httpClient.PostAsync($"instances/{instance.Id}/bosses", new StringContent(json, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"POSTing to rest/instances/{instance.Id}/bosses");
+            var result = await httpClient.PostAsync($"rest/instances/{instance.Id}/bosses", new StringContent(json, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
 
             var resultJson = await result.Content.ReadAsStringAsync();
@@ -29,15 +29,15 @@ namespace RaidPlannerClient.Service {
             Console.WriteLine("BossService::UpdateBoss");
 
             var json = JsonConvert.SerializeObject(boss);
-            Console.WriteLine($"PUTing to instances/{instance.Id}/bosses/{boss.Id}");
-            var result = await httpClient.PutAsync($"instances/{instance.Id}/bosses/{boss.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
+            Console.WriteLine($"PUTing to rest/instances/{instance.Id}/bosses/{boss.Id}");
+            var result = await httpClient.PutAsync($"rest/instances/{instance.Id}/bosses/{boss.Id}", new StringContent(json, Encoding.UTF8, "application/json"));
             result.EnsureSuccessStatusCode();
         }
         public async void DeleteBoss(Instance instance, Boss Boss) {
             Console.WriteLine("BossService::DeleteBoss");
 
-            Console.WriteLine($"DELETEing to instances/{instance.Id}/bosses/{Boss.Id}");
-            var result = await httpClient.DeleteAsync($"instances/{instance.Id}/bosses/{Boss.Id}");
+            Console.WriteLine($"DELETEing to rest/instances/{instance.Id}/bosses/{Boss.Id}");
+            var result = await httpClient.DeleteAsync($"rest/instances/{instance.Id}/bosses/{Boss.Id}");
             result.EnsureSuccessStatusCode();
         }
     }
