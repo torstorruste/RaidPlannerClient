@@ -5,13 +5,13 @@
         <div style="float: left"><h4>Team:</h4>
             @foreach (var role in GetRoles())
             {
-                <h3><img src="images/roles/@(role).png" width="20px" height="20px" /> @role</h3>
+                <h3><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" /> @role</h3>
                 <ul>
                 @foreach(var encounterPlayer in GetPlayersByRole(role)) {
                     var player = @GetPlayerByid(encounterPlayer.PlayerId);
                     var character = @GetCharacterById(encounterPlayer.CharacterId);
 
-                    <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))" class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</li>
+                    <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))" class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</li>
                 }
                 </ul>
             }
@@ -31,10 +31,10 @@
                     @if(IsApproved(character)) {
                         <tr>
                             <td>@player.Name</td>
-                            <td class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass).png" width="20px" height="20px" />@character.Name</td>
+                            <td class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</td>
                             @foreach(var role in GetRoles()) {
                                 @if(character != null && character.Roles != null && character.Roles.Contains(role)) {
-                                    <td @onclick="@(()=>Add(player, character, role))"><img src="images/roles/@(role).png" width="20px" height="20px" /></td>
+                                    <td @onclick="@(()=>Add(player, character, role))"><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" /></td>
                                 } else {
                                     <td></td>
                                 }

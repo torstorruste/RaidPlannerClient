@@ -4,7 +4,7 @@
         <ValidationSummary />
         <InputText id="name" @bind-Value="Character.Name" />
         
-        <img src="images/classes/@(Character.CharacterClass).png" width="20px" height="20px" />
+        <img src="images/classes/@(Character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />
         <InputSelect @bind-Value="Character.CharacterClass">
             <option value="">Select class:</option>
             @foreach (var value in Enum.GetValues(typeof(CharacterClass)))

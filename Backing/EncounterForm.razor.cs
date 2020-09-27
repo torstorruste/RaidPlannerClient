@@ -44,14 +44,22 @@ namespace RaidPlannerClient.Components
         public Character GetCharacterById(int? id)
         {
             Console.WriteLine($"Getting character with id {id}");
-            var character = Players.SelectMany(p => p.Characters).Where(c => c.Id == id).FirstOrDefault();
-            if(character.Name != null) return character;
-            else return new Character{Name="Unknown"};
+            if(Players.SelectMany(p=>p.Characters).Any(c=>c.Id==id)) {
+                return Players.SelectMany(p => p.Characters).Where(c => c.Id == id).FirstOrDefault();
+            } else {
+                return new Character{Id=id, Name="Unknown"};
+            };
         }
 
-        public Boss GetBossById(int id)
+        public Boss GetBossById(int? id)
         {
-            return Instances.SelectMany(i => i.Bosses).Where(b => b.Id == id).First();
+            Console.WriteLine($"Getting boss with id {id}");
+            if(Instances.SelectMany(i=>i.Bosses).Any(b=>b.Id==id)) {
+                return Instances.SelectMany(i => i.Bosses).Where(b => b.Id == id).FirstOrDefault();
+            } else {
+                Console.WriteLine($"Boss with id {id} does not exist, returning unknown boss");
+                return new Boss{Id=id, Name="Unknown"};
+            }
         }
 
         public List<Player> GetBenchedPlayers()
