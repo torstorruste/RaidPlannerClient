@@ -6,7 +6,7 @@
             <div class="@SignupCollapse">
                 <div style="float: left">
                     Unsigned:
-                    <ul>
+                    <ul style="columns: 5">
                         @foreach(var player in GetUnsignedPlayers()) {
                             <li @onclick="@(()=>Signup(player))">@player.Name</li>
                         }
@@ -14,7 +14,7 @@
                 </div>
                 <div style="float: left">
                     Signed:
-                    <ul>
+                    <ul style="columns: 5">
                         @foreach(var player in GetSignedPlayers()) {
                             <li @onclick="@(()=>Unsign(player))">@player.Name</li>
                         }

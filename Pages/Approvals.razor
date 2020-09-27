@@ -1,7 +1,7 @@
 @page "/approval"
-<div style="float: left">
-    <h2 @onclick="TogglePlayers">@( this.CollapsedPlayers=="collapse" ? "+" : "-") Players:</h2>
-    <div class="@CollapsedPlayers">
+<div>
+    <h2 @onclick="TogglePlayers" class="panel-heading alert-primary">@( this.CollapsedPlayers=="collapse" ? "+" : "-") Players:</h2>
+    <div class="panel panel-default border @CollapsedPlayers" style="padding-left: 10px">
     @if(approvals != null) {
         @foreach(var player in players) {
             <PlayerApprovalForm Player="@player" Approvals="@this" />
@@ -9,9 +9,9 @@
     }
     </div>
 </div>
-<div style="float: left">
-    <h2 @onclick="ToggleInstances">@( this.CollapsedInstances=="collapse" ? "+" : "-") Instances:</h2>
-    <div  class="@CollapsedInstances">
+<div>
+    <h2 @onclick="ToggleInstances" class="panel-heading alert-primary">@( this.CollapsedInstances=="collapse" ? "+" : "-") Instances:</h2>
+    <div  class="panel panel-default border @CollapsedInstances" style="padding-left: 10px">
     @if(approvals != null) {
         @foreach(var instance in instances) {
             <InstanceApprovalForm Instance="@instance" Approvals="@this" />
