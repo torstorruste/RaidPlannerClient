@@ -1,5 +1,5 @@
 <div class="panel-body">
-    <MatTextField label="Name" @bind-Value="Boss.Name" OnKeyPress="@OnKeypressHandler"></MatTextField>
+    <MatTextField label="Name" @bind-Value="Boss.Name" OnFocusOut="OnFocusOutHandler"></MatTextField>
 
     @if(Boss != null && Boss.Id!=null) {
         <MatButton Icon="delete" OnClick="@DeleteBoss" />
