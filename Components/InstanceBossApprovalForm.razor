@@ -15,9 +15,9 @@
                 <tr>
                     <td><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</td>
                     @if(IsApproved(Boss, character)) {
-                        <td><input id="b@Boss.Id c@character.Id" type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
+                        <td><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
                     } else {
-                        <td><input id="b@Boss.Id c@character.Id" type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" /></td>
+                        <td><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" /></td>
                     }
                 </tr>
             }
