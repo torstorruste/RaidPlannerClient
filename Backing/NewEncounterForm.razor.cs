@@ -38,7 +38,7 @@ namespace RaidPlannerClient.Components
 
         public async void AddEncounter()
         {
-            if(SelectedBoss.Id!=null) {
+            if(!Raid.Finalized && SelectedBoss.Id!=null) {
                 Console.WriteLine($"Preparing to add encounter for boss {SelectedBoss.Name}");
                 var encounter = await EncounterService.AddEncounter(Raid, SelectedBoss);
                 RaidForm.AddEncounter(encounter);

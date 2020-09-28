@@ -89,16 +89,20 @@ namespace RaidPlannerClient.Components
 
         public async Task Signup(Player player)
         {
-            Console.WriteLine($"Signing player {player.Name}");
-            Raid.SignedUp.Add((int)player.Id);
-            await RaidService.Signup(Raid, player);
+            if(!Raid.Finalized) {
+                Console.WriteLine($"Signing player {player.Name}");
+                Raid.SignedUp.Add((int)player.Id);
+                await RaidService.Signup(Raid, player);
+            }
         }
 
         public async Task Unsign(Player player)
         {
-            Console.WriteLine($"Unsigning player {player.Name}");
-            Raid.SignedUp.Remove((int)player.Id);
-            await RaidService.Unsign(Raid, player);
+            if(!Raid.Finalized) {
+                Console.WriteLine($"Unsigning player {player.Name}");
+                Raid.SignedUp.Remove((int)player.Id);
+                await RaidService.Unsign(Raid, player);
+            }
         }
 
         public async Task DeleteRaid()
@@ -111,13 +115,23 @@ namespace RaidPlannerClient.Components
         }
         internal void AddEncounter(Encounter encounter)
         {
-            Raid.Encounters.Add(encounter);
-            StateHasChanged();
+            if(!Raid.Finalized) {
+                Raid.Encounters.Add(encounter);
+                StateHasChanged();
+            }
         }
 
         internal void DeleteEncounter(Encounter encounter)
         {
-            Raid.Encounters.Remove(encounter);
+            if(!Raid.Finalized) {
+                Raid.Encounters.Remove(encounter);
+                StateHasChanged();
+            }
+        }
+
+        internal async void ToggleFinalize() {
+            Raid.Finalized = !Raid.Finalized;
+            Raid = await RaidService.UpdateRaid(Raid);
             StateHasChanged();
         }
     }

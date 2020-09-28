@@ -19,5 +19,8 @@ namespace RaidPlannerClient.Model
 
         [JsonProperty("signedUp")]
         public List<int> SignedUp { get; set; }
+
+        [JsonProperty("finalized")]
+        public Boolean Finalized { get; set; }
     }
 }

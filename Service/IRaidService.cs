@@ -9,6 +9,8 @@ namespace RaidPlannerClient.Service {
 
         Task<Raid> AddRaid(Raid raid);
 
+        Task<Raid> UpdateRaid(Raid raid);
+
         Task DeleteRaid(Raid raid);
 
         Task Signup(Raid raid, Player player);

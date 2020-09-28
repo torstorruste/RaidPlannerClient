@@ -2,6 +2,7 @@
     <div class="panel-heading alert-primary"><h4><span @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-")@Raid.Date.ToString("yyyy-MM-dd")</span><MatButton Icon="delete" OnClick="@DeleteRaid"></MatButton></h4></div>
     <div class="@Collapse">
         <div style="padding-left: 10px">
+            <MatButton @onclick="ToggleFinalize">@(Raid.Finalized ? "Reopen" : "Finalize")</MatButton>
             <h3 @onclick="CollapseSignups">@( this.SignupCollapse=="collapse" ? "+" : "-") Signups</h3>
             <div class="@SignupCollapse">
                 <div style="float: left">

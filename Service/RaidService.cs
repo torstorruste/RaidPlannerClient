@@ -84,5 +84,26 @@ namespace RaidPlannerClient.Service
             var result = await httpClient.DeleteAsync(path);
             result.EnsureSuccessStatusCode();
         }
+
+        public async Task<Raid> UpdateRaid(Raid raid)
+        {
+            Console.WriteLine("RaidService::UpdateRaid");
+
+            var jsonToPost = JsonConvert.SerializeObject(raid);
+            var path = $"rest/raids/{raid.Id}";
+            Console.WriteLine($"POSTing to {path}");
+            var result = await httpClient.PutAsync(path, new StringContent(jsonToPost, Encoding.UTF8, "application/json"));
+            
+            if(result.IsSuccessStatusCode) {
+                var json = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Raid>(json);
+            } else {
+                var message = await result.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+
+                result.EnsureSuccessStatusCode();
+                return new Raid();
+            }
+        }
     }
 }
