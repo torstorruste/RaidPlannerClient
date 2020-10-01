@@ -32,6 +32,18 @@ td, li, th {
   color: white;
 }
 
+.nav-link {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+}
+
 .main {
   flex: 1;
   background-color: #272727;
@@ -77,7 +89,7 @@ td, li, th {
   background-color: #272727;
 }
 .sidebar .navbar-brand {
-  font-size: 1.1rem;
+  font-size: 1.14em;
 }
 .sidebar .oi {
   width: 2rem;
@@ -96,7 +108,7 @@ td, li, th {
   padding-bottom: 1rem;
 }
 .sidebar a {
-  color: #d7d7d7;
+  color: white;
   border-radius: 4px;
   height: 3rem;
   display: flex;

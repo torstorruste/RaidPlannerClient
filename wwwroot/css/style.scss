@@ -32,6 +32,17 @@ td, li, th {
     color: white;
 }
 
+.nav-link {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    }
+
 .main {
     flex: 1;
     background-color: #272727;
@@ -75,11 +86,8 @@ td, li, th {
 
 .sidebar {
     background-color: #272727;;
-    .top-row {
-        // background-color: #747474;
-    }
     .navbar-brand {
-        font-size: 1.1rem;
+        font-size: 1.14em;
     }
     .oi {
         width: 2rem;
@@ -87,6 +95,7 @@ td, li, th {
         vertical-align: text-top;
         top: -2px;
     }
+
     .nav-item {
         font-size: 0.9rem;
         padding-bottom: 0.5rem;
@@ -98,7 +107,7 @@ td, li, th {
             padding-bottom: 1rem;
         }
         a {
-            color: #d7d7d7;
+            color:white;
             border-radius: 4px;
             height: 3rem;
             display: flex;
