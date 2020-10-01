@@ -294,3 +294,5 @@ obj/
 .history
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,aspnetcore,visualstudiocode
+Properties/launchSettings.json
+Properties/launchSettings.json
