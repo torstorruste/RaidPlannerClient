@@ -131,6 +131,15 @@ namespace RaidPlannerClient.Components
                     .ToList();
         }
 
+        public List<Character> GetCharactersByClass(CharacterClass characterClass)
+        {
+            return Encounter.Characters
+                    .Select(p=>GetCharacterById(p.CharacterId))
+                    .Where(c=>c.CharacterClass==characterClass)
+                    .OrderBy(c=>c.Name)
+                    .ToList();
+        }
+
         public async void DeleteEncounter()
         {
             if (!Raid.Finalized)
@@ -142,6 +151,13 @@ namespace RaidPlannerClient.Components
                     RaidForm.DeleteEncounter(Encounter);
                 }
             }
+        }
+        
+        public List<CharacterClass> GetClasses()
+        {
+            return new List<CharacterClass>{CharacterClass.DeathKnight, CharacterClass.DemonHunter, CharacterClass.Druid,
+            CharacterClass.Hunter, CharacterClass.Mage, CharacterClass.Monk, CharacterClass.Paladin, CharacterClass.Priest,
+            CharacterClass.Rogue, CharacterClass.Shaman, CharacterClass.Warlock, CharacterClass.Warrior};
         }
     }
 }
