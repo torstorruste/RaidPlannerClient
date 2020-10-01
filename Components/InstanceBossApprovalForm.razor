@@ -13,11 +13,11 @@
             @foreach(var character in GetCharacters()) 
             {
                 <tr>
-                    <td><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</td>
+                    <td class="form-text"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</td>
                     @if(IsApproved(Boss, character)) {
-                        <td><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
+                        <td class="form-text"><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
                     } else {
-                        <td><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" /></td>
+                        <td class="form-text"><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" /></td>
                     }
                 </tr>
             }

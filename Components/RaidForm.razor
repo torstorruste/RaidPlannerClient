@@ -6,15 +6,15 @@
             <h3 @onclick="CollapseSignups">@( this.SignupCollapse=="collapse" ? "+" : "-") Signups</h3>
             <div class="@SignupCollapse">
                 <div style="float: left">
-                    Unsigned:
-                    <ul style="columns: 5">
+                <span style="color: white">Unsigned:</span>                    
+                <ul style="columns: 5">
                         @foreach(var player in GetUnsignedPlayers()) {
                             <li @onclick="@(()=>Signup(player))">@player.Name</li>
                         }
                     </ul>
                 </div>
                 <div style="float: left">
-                    Signed:
+                    <span style="color: white">signed:</span> 
                     <ul style="columns: 5">
                         @foreach(var player in GetSignedPlayers()) {
                             <li @onclick="@(()=>Unsign(player))">@player.Name</li>
