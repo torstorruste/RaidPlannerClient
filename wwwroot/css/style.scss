@@ -30,18 +30,29 @@ app {
 
 td, li, th {
     color: white;
+    padding-right: 3px;
+}
+
+.player-column {
+    padding-right: 20px;
 }
 
 .nav-link {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
-    text-align: left;
+    // padding: 15px 32px;
+    // text-align: center;
     text-decoration: none;
-    display: inline-block;
+    // display: inline-block;
     font-size: 30px;
+    display: flex;
+    justify-content: center;
     }
+
+.border {
+    border: none !important;
+}
 
 .main {
     flex: 1;
@@ -56,6 +67,9 @@ td, li, th {
     h2, h3, h4, h5 {
         font-size: 1.5em;
         color: #FFE400;
+    }
+    .instance-name {
+        // margin-left: 220px;
     }
     .panel-heading {
         background-color: transparent;
@@ -90,7 +104,7 @@ td, li, th {
         font-size: 1.14em;
     }
     .oi {
-        width: 2rem;
+        // width: 2rem;
         font-size: 1.1rem;
         vertical-align: text-top;
         top: -2px;
@@ -99,6 +113,7 @@ td, li, th {
     .nav-item {
         font-size: 0.9rem;
         padding-bottom: 0.5rem;
+        justify-content: center;
     }
         &:first-of-type {
             padding-top: 1rem;

@@ -296,3 +296,5 @@ obj/
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,aspnetcore,visualstudiocode
 Properties/launchSettings.json
 Properties/launchSettings.json
+wwwroot/css/style.scss
+wwwroot/css/app.css.map

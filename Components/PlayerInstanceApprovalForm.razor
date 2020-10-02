@@ -1,33 +1,35 @@
 <div class="panel panel-default">
-    <h4 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Instance.Name</h4>
+    <div class="instance-name">
+        <h4 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Instance.Name</h4>
 
-    <div class="@Collapse">
-    <table>
-        <thead>
-            <tr>
-                <th>Boss:</th>
-                @foreach (var character in Player.Characters)
-                {
-                    <th><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</th>
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var boss in Instance.Bosses) 
-            {
+        <div class="@Collapse">
+        <table>
+            <thead>
                 <tr>
-                    <td>@boss.Name</td>
-                    @foreach(var character in Player.Characters)
+                    <th>Boss:</th>
+                    @foreach (var character in Player.Characters)
                     {
-                        @if(IsApproved(boss, character)) {
-                            <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" checked /></td>
-                        } else {
-                            <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" /></td>
-                        }
-                    }
+                        <th><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</th>
+                    }   
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach(var boss in Instance.Bosses) 
+                {
+                    <tr>
+                        <td>@boss.Name</td>
+                        @foreach(var character in Player.Characters)
+                        {
+                            @if(IsApproved(boss, character)) {
+                                <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" checked /></td>
+                            } else {
+                                <td><input type="checkbox" @onchange="e=>{CheckboxClicked(boss, character, e.Value);}" /></td>
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
     </div>
 </div>

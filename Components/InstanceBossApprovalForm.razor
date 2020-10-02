@@ -13,6 +13,7 @@
             @foreach(var character in GetCharacters()) 
             {
                 <tr>
+                    @* Fix the checkbox *@
                     <td class="form-text"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</td>
                     @if(IsApproved(Boss, character)) {
                         <td class="form-text"><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>

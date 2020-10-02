@@ -30,7 +30,7 @@
                 @foreach(var character in player.Characters) {
                     @if(IsApproved(character)) {
                         <tr>
-                            <td>@player.Name</td>
+                            <td class="player-column">@player.Name</td>
                             <td class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</td>
                             @foreach(var role in GetRoles()) {
                                 @if(character != null && character.Roles != null && character.Roles.Contains(role)) {

@@ -30,6 +30,11 @@ app {
 
 td, li, th {
   color: white;
+  padding-right: 3px;
+}
+
+.player-column {
+  padding-right: 20px;
 }
 
 .nav-link {
@@ -37,11 +42,14 @@ td, li, th {
   /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
-  text-align: left;
   text-decoration: none;
-  display: inline-block;
   font-size: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.border {
+  border: none !important;
 }
 
 .main {
@@ -92,7 +100,6 @@ td, li, th {
   font-size: 1.14em;
 }
 .sidebar .oi {
-  width: 2rem;
   font-size: 1.1rem;
   vertical-align: text-top;
   top: -2px;
@@ -100,6 +107,7 @@ td, li, th {
 .sidebar .nav-item {
   font-size: 0.9rem;
   padding-bottom: 0.5rem;
+  justify-content: center;
 }
 .sidebar:first-of-type {
   padding-top: 1rem;
