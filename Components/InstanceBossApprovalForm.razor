@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <h4 @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @Boss.Name</h4>
 
-    <div class="@Collapse">
+    <div class="instance-table @Collapse">
     <table>
         <thead>
             <tr>
@@ -14,9 +14,9 @@
             {
                 <tr>
                     @* Fix the checkbox *@
-                    <td class="form-text"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</td>
+                    <td class="character-name"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" /> @character.Name</td>
                     @if(IsApproved(Boss, character)) {
-                        <td class="form-text"><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
+                        <td class="checkbox"><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" checked /></td>
                     } else {
                         <td class="form-text"><input type="checkbox" @onchange="e=>{CheckboxClicked(Boss, character, e.Value);}" /></td>
                     }
