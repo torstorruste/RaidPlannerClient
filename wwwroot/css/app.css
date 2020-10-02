@@ -1,4 +1,4 @@
-@font-face {
+﻿@font-face {
   font-family: "CustomFont";
   src: url("../../font/AvantGarde.ttf");
 }
@@ -221,3 +221,13 @@ td, li, th {
 }
 
 /*# sourceMappingURL=app.css.map */
+
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+}
