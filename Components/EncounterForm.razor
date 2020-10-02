@@ -45,5 +45,20 @@
             }
             </table>
         </div>
+        <div style="float: left"><h4>Roles:</h4>
+            <ul>
+                <li>Total: @(Encounter.Characters.Count)</li>
+            @foreach(var role in GetRoles()) {
+                <li><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" />: @(GetPlayersByRole(role).Count)</li>
+            }
+            </ul>
+
+            <h4>Classes:</h4>
+            <ul>
+            @foreach(var c in GetClasses()) {
+                <li><img src="images/classes/@(c.ToString().ToLower()).png" width="20px" height="20px" />: @(GetCharactersByClass(c).Count) </li>
+            }
+            </ul>
+        </div>
     </div>
 </div>
