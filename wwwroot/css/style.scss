@@ -28,6 +28,11 @@ app {
     align-items: center;
 }
 
+.mdc-list-item__text {
+    color: black;
+  }
+
+
 td, li, th {
     color: white;
     padding-right: 3px;
@@ -36,6 +41,15 @@ td, li, th {
 .player-column {
     padding-right: 20px;
 }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
 
 .nav-link {
     background-color: #4CAF50; /* Green */
