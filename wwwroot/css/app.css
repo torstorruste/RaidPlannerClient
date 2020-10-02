@@ -72,6 +72,11 @@ td, li, th {
   color: white;
 }
 
+.mdc-button__ripple {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
 .nav-link {
   background-color: #4CAF50;
   /* Green */
