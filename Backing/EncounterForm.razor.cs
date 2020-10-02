@@ -102,7 +102,7 @@ namespace RaidPlannerClient.Components
 
         public void Add(Player player, Character character, Role role)
         {
-            if (!Raid.Finalized)
+            if (!Raid.Finalized && Encounter.Characters.Count < 20)
             {
                 Console.WriteLine($"Adding {player.Name} as {role}");
                 var encounterCharacter = new EncounterCharacter { PlayerId = (int)player.Id, CharacterId = (int)character.Id, Role = role };
