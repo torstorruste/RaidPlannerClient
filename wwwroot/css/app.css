@@ -28,6 +28,10 @@ app {
   align-items: center;
 }
 
+.mdc-list-item__text {
+  color: black;
+}
+
 td, li, th {
   color: white;
   padding-right: 3px;
