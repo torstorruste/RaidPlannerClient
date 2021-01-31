@@ -2,81 +2,83 @@
     <div class="panel-heading alert-primary">
         <h3><span @onclick="ToggleCollapse">@( this.Collapse=="collapse" ? "+" : "-") @GetBossById(Encounter.BossId).Name</span><MatButton Icon="delete" OnClick="@DeleteEncounter">Delete</MatButton></h3></div>
     <div class="flex-container @Collapse">
-        <div class="team"><h4>Team:</h4>
-            @foreach (var role in GetRoles())
-            {
-                <h3><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" /> @role</h3>
-                <ul>
-                @foreach(var encounterPlayer in GetPlayersByRole(role)) {
-                    var player = @GetPlayerByid(encounterPlayer.PlayerId);
-                    var character = @GetCharacterById(encounterPlayer.CharacterId);
+        @if(this.Collapse!="collapse") {
+            <div class="team"><h4>Team:</h4>
+                @foreach (var role in GetRoles())
+                {
+                    <h3><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" /> @role</h3>
+                    <ul>
+                    @foreach(var encounterPlayer in GetPlayersByRole(role)) {
+                        var player = @GetPlayerByid(encounterPlayer.PlayerId);
+                        var character = @GetCharacterById(encounterPlayer.CharacterId);
 
-                    <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))" class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</li>
+                        <li @onclick="@(()=>Remove(encounterPlayer.PlayerId))" class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</li>
+                    }
+                    </ul>
+                }
+            </div>
+            <div class="bench"><h4>Bench</h4>
+                <table>
+                    <tr>
+                        <th>Player:</th>
+                        <th>Character:</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                @foreach(var player in GetBenchedPlayers()) {
+                    @foreach(var character in player.Characters) {
+                        @if(IsApproved(character)) {
+                            <tr>
+                                <td class="player-column">@player.Name</td>
+                                <td class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</td>
+                                @foreach(var role in GetRoles()) {
+                                    @if(character != null && character.Roles != null && character.Roles.Contains(role)) {
+                                        <td @onclick="@(()=>Add(player, character, role))"><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" /></td>
+                                    } else {
+                                        <td></td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                }
+                </table>
+            </div>
+            <div class="roles"><h4>Roles:</h4>
+                <ul>
+                    <li>Total: @(Encounter.Characters.Count)</li>
+                @foreach(var role in GetRoles()) {
+                    <li><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" />: @(GetPlayersByRole(role).Count)</li>
                 }
                 </ul>
-            }
-        </div>
-        <div class="bench"><h4>Bench</h4>
-            <table>
-                <tr>
-                    <th>Player:</th>
-                    <th>Character:</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            @foreach(var player in GetBenchedPlayers()) {
-                @foreach(var character in player.Characters) {
-                    @if(IsApproved(character)) {
-                        <tr>
-                            <td class="player-column">@player.Name</td>
-                            <td class="@character.CharacterClass"><img src="images/classes/@(character.CharacterClass.ToString().ToLower()).png" width="20px" height="20px" />@character.Name</td>
-                            @foreach(var role in GetRoles()) {
-                                @if(character != null && character.Roles != null && character.Roles.Contains(role)) {
-                                    <td @onclick="@(()=>Add(player, character, role))"><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" /></td>
-                                } else {
-                                    <td></td>
-                                }
-                            }
-                        </tr>
-                    }
-                }
-            }
-            </table>
-        </div>
-        <div class="roles"><h4>Roles:</h4>
-            <ul>
-                <li>Total: @(Encounter.Characters.Count)</li>
-            @foreach(var role in GetRoles()) {
-                <li><img src="images/roles/@(role.ToString().ToLower()).png" width="20px" height="20px" />: @(GetPlayersByRole(role).Count)</li>
-            }
-            </ul>
 
-            <h4>Classes:</h4>
-            <ul>
-            @foreach(var c in GetClasses()) {
-                <li><img src="images/classes/@(c.ToString().ToLower()).png" width="20px" height="20px" />: @(GetCharactersByClass(c).Count) </li>
-            }
-            </ul>
-
-            <h4>Buffs:</h4>
-            <ul>
-                @foreach(var b in GetBuffs()) {
-                    @if(b.HasBuff(Encounter)) {
-                        <li><img src="images/buffs/@(b.GetImageName())" width="20px" height="20px" />: @(b.GetName())</li>
-                    }
+                <h4>Classes:</h4>
+                <ul>
+                @foreach(var c in GetClasses()) {
+                    <li><img src="images/classes/@(c.ToString().ToLower()).png" width="20px" height="20px" />: @(GetCharactersByClass(c).Count) </li>
                 }
-            </ul>
+                </ul>
 
-            <h4>Missing buffs:</h4>
-            <ul>
-                @foreach(var b in GetBuffs()) {
-                    @if(!b.HasBuff(Encounter)) {
-                        <li><img src="images/buffs/@(b.GetImageName())" width="20px" height="20px" />: @(b.GetName())</li>
+                <h4>Buffs:</h4>
+                <ul>
+                    @foreach(var b in GetBuffs()) {
+                        @if(b.HasBuff(Encounter)) {
+                            <li><img src="images/buffs/@(b.GetImageName())" width="20px" height="20px" />: @(b.GetName())</li>
+                        }
                     }
-                }
-            </ul>
-        </div>
+                </ul>
+
+                <h4>Missing buffs:</h4>
+                <ul>
+                    @foreach(var b in GetBuffs()) {
+                        @if(!b.HasBuff(Encounter)) {
+                            <li><img src="images/buffs/@(b.GetImageName())" width="20px" height="20px" />: @(b.GetName())</li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
     </div>
 </div>

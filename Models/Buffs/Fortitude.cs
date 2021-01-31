@@ -1,26 +1,24 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RaidPlannerClient.Model.Buff
 {
-    public class BattleShout : Buff
+    public class Fortitude : Buff
     {
-        public BattleShout(List<Character> characters) : base (characters) {
+        public Fortitude(List<Character> characters) : base(characters) {
         }
 
         public override string GetName()
         {
-            return "Battle Shout";
+            return "Fortitude";
         }
 
         public override bool HasBuff(Encounter encounter)
         {
-            return ContainsCharacterOfClass(encounter, CharacterClass.Warrior);
+            return ContainsCharacterOfClass(encounter, CharacterClass.Priest);
         }
 
         public override string GetImageName() {
-            return "battleshout.jpg";
+            return "fortitude.jpg";
         }
     }
 }

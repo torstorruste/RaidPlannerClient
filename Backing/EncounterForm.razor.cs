@@ -163,7 +163,13 @@ namespace RaidPlannerClient.Components
 
         public List<Buff> GetBuffs() {
             var characters = Players.SelectMany(p=>p.Characters).ToList();
-            return new List<Buff>{new BattleShout(characters)};
+            return new List<Buff>{
+                new BattleShout(characters), 
+                new Fortitude(characters), 
+                new ArcaneIntellect(characters),
+                new Soulstone(characters),
+                new MysticTouch(characters),
+                new ChaosBrand(characters)};
         }
     }
 }

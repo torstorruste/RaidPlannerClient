@@ -1,26 +1,25 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace RaidPlannerClient.Model.Buff
 {
-    public class BattleShout : Buff
+    public class ArcaneIntellect : Buff
     {
-        public BattleShout(List<Character> characters) : base (characters) {
+        public ArcaneIntellect(List<Character> characters) : base(characters) {
         }
 
         public override string GetName()
         {
-            return "Battle Shout";
+            return "Intellect";
         }
 
         public override bool HasBuff(Encounter encounter)
         {
-            return ContainsCharacterOfClass(encounter, CharacterClass.Warrior);
+            return ContainsCharacterOfClass(encounter, CharacterClass.Mage);
         }
 
         public override string GetImageName() {
-            return "battleshout.jpg";
+            return "intellect.jpg";
         }
     }
 }

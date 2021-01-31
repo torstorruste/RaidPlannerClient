@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <div style="float: left">
-                    <span style="color: white">signed:</span> 
+                    <span style="color: white">Signed:</span>
                     <ul style="columns: 5">
                         @foreach(var player in GetSignedPlayers()) {
                             <li @onclick="@(()=>Unsign(player))">@player.Name</li>
@@ -26,6 +26,7 @@
 
         <div style="padding-left: 10px; clear: both">
             <h3 @onclick="CollapseEncounters">@( this.EncountersCollapse=="collapse" ? "+" : "-") Encounters</h3>
+            @if(this.EncountersCollapse!="collapse") {
             <div class="@EncountersCollapse" style="padding-left: 10px">
                 <NewEncounterForm Raid="@Raid" Instances="@Instances" RaidForm="@this" />
 
@@ -33,6 +34,7 @@
                     <EncounterForm Raid="@Raid" Encounter="@encounter" Players="@Players" Approvals="@Approvals" Instances="@Instances" RaidForm="@this" />
                 }
             </div>
+            }
         </div>
     </div>
 </div>
