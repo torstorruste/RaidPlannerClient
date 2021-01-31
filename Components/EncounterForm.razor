@@ -59,6 +59,24 @@
                 <li><img src="images/classes/@(c.ToString().ToLower()).png" width="20px" height="20px" />: @(GetCharactersByClass(c).Count) </li>
             }
             </ul>
+
+            <h4>Buffs:</h4>
+            <ul>
+                @foreach(var b in GetBuffs()) {
+                    @if(b.HasBuff(Encounter)) {
+                        <li><img src="images/buffs/@(b.GetImageName())" width="20px" height="20px" />: @(b.GetName())</li>
+                    }
+                }
+            </ul>
+
+            <h4>Missing buffs:</h4>
+            <ul>
+                @foreach(var b in GetBuffs()) {
+                    @if(!b.HasBuff(Encounter)) {
+                        <li><img src="images/buffs/@(b.GetImageName())" width="20px" height="20px" />: @(b.GetName())</li>
+                    }
+                }
+            </ul>
         </div>
     </div>
 </div>

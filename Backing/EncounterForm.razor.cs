@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using RaidPlannerClient.Model;
+using RaidPlannerClient.Model.Buff;
 using RaidPlannerClient.Service;
 
 namespace RaidPlannerClient.Components
@@ -158,6 +159,11 @@ namespace RaidPlannerClient.Components
             return new List<CharacterClass>{CharacterClass.DeathKnight, CharacterClass.DemonHunter, CharacterClass.Druid,
             CharacterClass.Hunter, CharacterClass.Mage, CharacterClass.Monk, CharacterClass.Paladin, CharacterClass.Priest,
             CharacterClass.Rogue, CharacterClass.Shaman, CharacterClass.Warlock, CharacterClass.Warrior};
+        }
+
+        public List<Buff> GetBuffs() {
+            var characters = Players.SelectMany(p=>p.Characters).ToList();
+            return new List<Buff>{new BattleShout(characters)};
         }
     }
 }
